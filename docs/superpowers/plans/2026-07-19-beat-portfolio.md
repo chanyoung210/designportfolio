@@ -814,34 +814,26 @@ export function Hero() {
   useEffect(() => {
     if (reduced || !sectionRef.current) return
 
-    const ringTweens = RINGS.map((ring, index) =>
-      gsap.to(ringRefs.current[ring.id], {
-        scale: 2.5,
-        opacity: 0,
-        ease: 'power1.in',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: `${index * 20}% top`,
-          end: `${index * 20 + 40}% top`,
-          scrub: true,
-        },
-      })
-    )
-
-    // Parallax: backdrop moves slower than the rings/content as the section scrolls past.
-    const backdropTween = gsap.to(backdropRef.current, {
-      yPercent: 15,
-      ease: 'none',
+    // Pin the section (Apple-style): scroll input drives the timeline below
+    // instead of moving the page, until all three rings have faded out.
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: 'top top',
+        end: '+=200%',
         scrub: true,
+        pin: true,
       },
     })
 
-    const tweens = [...ringTweens, backdropTween]
-    return () => tweens.forEach((tween) => tween.scrollTrigger?.kill())
+    RINGS.forEach((ring) => {
+      tl.to(ringRefs.current[ring.id], { scale: 2.5, opacity: 0, ease: 'power1.in' })
+    })
+
+    // Parallax: backdrop drifts slower than the rings across the whole pinned duration.
+    tl.to(backdropRef.current, { yPercent: 15, ease: 'none' }, 0)
+
+    return () => tl.scrollTrigger?.kill()
   }, [reduced])
 
   return (
@@ -1355,6 +1347,6 @@ git commit -m "feat: wire up full page in App and add Vercel config"
 Automated tests cover logic (routing, reduced-motion, open/close, rendering). They deliberately do **not** cover real GSAP/ScrollTrigger visual behavior (mocked out) — so before calling this done, run `npm run dev` and manually check in a browser:
 
 - Intro plays the pulse, then folds up into the Hero.
-- Scrolling through the Hero shrinks/fades the CX/BX/UX rings as described.
+- Hero pins in place while scrolling (page stops moving) until all three CX/BX/UX rings have shrunk/faded out and the backdrop has drifted; only then does scrolling resume into the project list.
 - Project list titles animate in on scroll; clicking one opens the detail overlay with a fade, updates the URL, and back/forward navigation closes it correctly.
 - Toggling OS-level "reduce motion" (Windows: Settings → Accessibility → Visual effects → Animation effects, off) skips all animations but still shows final content.
