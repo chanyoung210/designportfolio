@@ -1,0 +1,65 @@
+.review {
+  display: none;
+  position: relative;
+  /* Also guarantees at least 100vh of scroll room below this section's
+     start — ContentGrid's title-fade-out finishes exactly 100vh into
+     Review, and a page can never scroll past its own last section, so
+     without this the fade could get stranded mid-transition at the
+     bottom of the page (this is currently the last section). */
+  min-height: 100vh;
+  padding: 120px 100px;
+}
+
+.title {
+  margin: 0 0 56px;
+  font-size: var(--fs-46);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--color-fg);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  margin: 0 -100px;
+  padding: 32px 100px;
+  border-top: 1px solid #232323;
+}
+
+.row:last-child {
+  border-bottom: 1px solid #232323;
+}
+
+.index {
+  width: 110px;
+  flex-shrink: 0;
+  font-size: var(--fs-80);
+  font-weight: 800;
+  line-height: 1;
+  color: #333333;
+  text-align: center;
+}
+
+.body {
+  flex: 1;
+}
+
+.quote {
+  margin: 0 0 10px;
+  font-size: var(--fs-20);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-fg);
+}
+
+.author {
+  margin: 0;
+  font-size: var(--fs-14);
+  color: #888888;
+}

@@ -1,0 +1,78 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-bottom: 1px solid #777777;
+}
+
+.heroContent {
+  position: relative;
+}
+
+.photo {
+  position: absolute;
+  top: -17px;
+  right: 218px;
+  width: 342px;
+  height: 388px;
+  object-fit: cover;
+  border-radius: 4px;
+  z-index: 0;
+  opacity: 0;
+}
+
+.stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  font-family: var(--font-hiikr);
+  line-height: calc(var(--lh-tight) * 1.045);
+  color: var(--color-fg);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.starRotated {
+  transform: rotate(-45deg);
+}
+
+.line {
+  font-size: calc(var(--fs-120) * 0.84 + 2px);
+}
+
+.design {
+  font-size: calc(var(--fs-240) * 0.64505 + 2px);
+}
+
+.tagline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: calc(var(--fs-24) - 2px);
+  transition: opacity 300ms ease;
+}
+
+.fadeIn {
+  animation: fadeIn 500ms ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,155 @@
+.wrap {
+  position: relative;
+  /* Scroll distance: one viewport for the intro, plus one per remaining
+     card so scrubbing through all 6 takes a deliberate amount of scroll. */
+  height: 600vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.title {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  font-family: var(--font-pretendard);
+  font-size: 46px;
+  font-weight: 700;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.topRight {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  max-width: 460px;
+  font-family: var(--font-pretendard);
+  font-size: 14px;
+  line-height: 1.4;
+  color: #c2c2c2;
+  text-align: right;
+  z-index: 2;
+}
+
+.bottomLeft {
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+  font-family: var(--font-pretendard);
+  font-size: 14px;
+  line-height: 1.4;
+  color: #c2c2c2;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.bottomRight {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  font-family: var(--font-pretendard);
+  font-size: 14px;
+  line-height: 1.4;
+  color: #c2c2c2;
+  z-index: 2;
+}
+
+.track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  /* Fixed to the tallest a card ever gets, so the track's own bounding
+     height never changes as the focused card grows/shrinks — otherwise
+     the top:50%/-50% recenter shifts with it and the whole row bobs up
+     and down as focus moves, instead of gliding in a straight line. */
+  height: 574px;
+  gap: 8px;
+  will-change: transform;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 365px;
+  height: 487px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #0a0a0a;
+  cursor: pointer;
+  transform-origin: center;
+  /* No z-index means paint order just follows DOM order, and the main
+     (first) card comes before its sub cards in the DOM — so without
+     this, the sub cards it's rising behind/spreading past would paint
+     over it during the entrance. */
+  z-index: 1;
+}
+
+.card:first-child {
+  z-index: 2;
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.35s ease;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.3);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.cardTitle {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  right: 32px;
+  font-family: var(--font-pretendard);
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cardTags {
+  position: absolute;
+  top: 82px;
+  left: 32px;
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-pretendard);
+  font-size: 14px;
+  color: #e5e5e5;
+}
+
+.cardSeeMore {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-family: var(--font-pretendard);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.card:hover .cardSeeMore {
+  opacity: 1;
+  transform: translateY(0);
+}

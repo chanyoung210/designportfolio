@@ -1,0 +1,60 @@
+.wrap {
+  position: relative;
+}
+
+/* Sticky-background/scrolling-foreground trick: .titleSticky pins for a
+   full viewport height, then the negative margin pulls .grid (a normal
+   flow sibling, so it drives the page's real scroll length) up to
+   overlap and scroll over it. align-items:flex-start (not center) keeps
+   the text pinned at the top edge rather than mid-screen. */
+.titleSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-bottom: -100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 60px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.titleSticky span {
+  font-family: var(--font-pretendard);
+  font-size: clamp(88px, 15.8vw, 282px);
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  letter-spacing: 4px;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1480px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 100vh 100px 8px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.item {
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

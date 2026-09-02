@@ -45,6 +45,37 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Only affects CSSOM scroll APIs / anchor jumps (nav links), not native
+     wheel/touch scrolling — safe alongside FocusList's own scroll-jacking,
+     which always passes an explicit behavior: 'instant' to override this. */
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+  /* Late webfont swaps reflow content above the fold; without this the
+     browser silently renormalizes scrollY to compensate ("scroll
+     anchoring"), which FocusList's position-based scroll-jacking reads as
+     real user scrolling and reacts to. */
+  overflow-anchor: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -62,9 +93,16 @@ h4 {
   line-height: var(--lh-heading);
 }
 
-/* Pretendard's Korean metrics run loose next to Latin default spacing */
+/* Pretendard's Korean metrics run loose next to Latin default spacing.
+   letter-spacing inherits, so an English block needs its own explicit
+   reset — just not matching :lang(ko) isn't enough once a KO ancestor
+   (e.g. <html lang="ko">) has already set the inherited value. */
 :lang(ko) {
   letter-spacing: -0.01em;
+}
+
+:lang(en) {
+  letter-spacing: normal;
 }
 
 .glass {
@@ -78,5 +116,9 @@ h4 {
   * {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

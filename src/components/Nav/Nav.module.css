@@ -1,0 +1,204 @@
+.nav {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1200px, calc(100vw - 48px));
+  height: 60px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  background: transparent;
+  opacity: 1;
+  transition:
+    width 300ms ease,
+    background-color 300ms ease,
+    backdrop-filter 300ms ease,
+    opacity 300ms ease;
+}
+
+.nav.dimmed {
+  opacity: 0.3;
+}
+
+.nav.dimmed:hover {
+  opacity: 1;
+}
+
+.nav.scrolled {
+  width: 640px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.starRotated {
+  transform: rotate(-45deg);
+}
+
+.icons:hover .starRotated {
+  animation: spinRotated 0.5s ease-out 1;
+}
+
+.icons:hover img:not(.starRotated) {
+  animation: spin 0.5s ease-out 0.2s 1;
+  animation-fill-mode: backwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinRotated {
+  0% {
+    transform: rotate(-45deg);
+  }
+  20% {
+    transform: rotate(-55deg);
+  }
+  100% {
+    transform: rotate(315deg);
+  }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.links a {
+  font-family: var(--font-pretendard);
+  font-size: var(--fs-14);
+  color: #c2c2c2;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.links a:hover {
+  color: #ffffff;
+}
+
+.hiddenPlayer {
+  position: fixed;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.volumeControl {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Absolutely positioned so expanding it on hover never reflows the centered
+   menu links — it overlays leftward instead of taking flex space. */
+.volumeSlider {
+  position: absolute;
+  left: -88px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  padding-right: 8px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    width 200ms ease,
+    opacity 200ms ease;
+}
+
+.volumeControl:hover .volumeSlider {
+  width: 88px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.volumeSlider input {
+  width: 80px;
+  accent-color: #ffffff;
+  background: transparent;
+}
+
+.volumeSlider input::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 10px;
+  border: 1.5px solid #ffffff;
+  border-radius: 9999px;
+}
+
+.volumeSlider input::-moz-range-track {
+  background: transparent;
+  height: 10px;
+  border: 1.5px solid #ffffff;
+  border-radius: 9999px;
+}
+
+.volumeSlider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.volumeSlider input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.volumeButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.volumeIcon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-color: #c2c2c2;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  transition: background-color 200ms ease;
+}
+
+.volumeButton:hover .volumeIcon {
+  background-color: #ffffff;
+}

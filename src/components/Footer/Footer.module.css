@@ -1,0 +1,27 @@
+.footer {
+  background: #0d93d7;
+  color: #000000;
+  padding: 40px 100px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-pretendard);
+  font-size: var(--fs-14);
+}
+
+.contact {
+  display: flex;
+  gap: 24px;
+}
+
+.title {
+  margin: 24px 0;
+  font-family: var(--font-hiikr);
+  font-size: 148px;
+  letter-spacing: -1px;
+  color: #000000;
+  white-space: nowrap;
+}

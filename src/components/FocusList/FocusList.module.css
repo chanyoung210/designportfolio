@@ -1,0 +1,67 @@
+.section {
+  position: relative;
+  background: var(--color-bg);
+}
+
+.row {
+  padding: 24px 100px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.row:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.row.active {
+  background: #f5fafd;
+}
+
+.label {
+  font-family: var(--font-pretendard);
+  font-size: 70px;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+  transition:
+    color 200ms ease,
+    font-weight 200ms ease;
+}
+
+.row.active .label {
+  color: #000000;
+  font-weight: 700;
+}
+
+.floatImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 380px;
+  overflow: hidden;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition-property: transform;
+  transition-timing-function: ease;
+}
+
+.number {
+  font-family: var(--font-pretendard);
+  font-size: 40px;
+  font-weight: 700;
+  color: #000000;
+}
