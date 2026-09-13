@@ -1,6 +1,5 @@
 .section {
   position: relative;
-  background: var(--color-bg);
 }
 
 .row {
