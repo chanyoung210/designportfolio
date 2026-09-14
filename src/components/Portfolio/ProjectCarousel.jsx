@@ -190,11 +190,7 @@ export function ProjectCarousel({ active }) {
           ))}
         </div>
       </div>
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-        onSelectProject={setSelectedProject}
-      />
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </div>
   )
 }

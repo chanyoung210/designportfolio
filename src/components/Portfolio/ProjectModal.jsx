@@ -7,9 +7,10 @@ import styles from './ProjectModal.module.css'
 // top:0, done as a translateY so it's one GPU-friendly transform), then the
 // modal panel rises in behind it. Reverses on close so the panel drops out
 // before the backdrop retreats back down.
-export function ProjectModal({ project, onClose, onSelectProject }) {
+export function ProjectModal({ project, onClose }) {
   const backdropRef = useRef(null)
   const panelRef = useRef(null)
+  const closeBtnRef = useRef(null)
   const [activeProject, setActiveProject] = useState(null)
   const [rendered, setRendered] = useState(false)
 
@@ -30,6 +31,7 @@ export function ProjectModal({ project, onClose, onSelectProject }) {
     if (!rendered) return
     const backdrop = backdropRef.current
     const panel = panelRef.current
+    const closeBtn = closeBtnRef.current
     if (project) {
       // Locking overflow removes the scrollbar, which shrinks the page by
       // its width and shifts everything sideways — pad that width back in
@@ -46,7 +48,7 @@ export function ProjectModal({ project, onClose, onSelectProject }) {
 
     if (project) {
       gsap.set(backdrop, { y: 1200 })
-      gsap.set(panel, { y: 80, opacity: 0 })
+      gsap.set([panel, closeBtn], { y: 80, opacity: 0 })
       // power2.out front-loads almost all of the motion into the first
       // ~150ms (fast start, long barely-visible tail), so a full-viewport
       // wipe on it reads as an instant cut rather than a rise. inOut eases
@@ -55,11 +57,11 @@ export function ProjectModal({ project, onClose, onSelectProject }) {
       gsap
         .timeline()
         .to(backdrop, { y: 0, duration: 0.8, ease: 'power2.inOut' })
-        .to(panel, { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.15')
+        .to([panel, closeBtn], { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.15')
     } else {
       gsap
         .timeline({ onComplete: () => setRendered(false) })
-        .to(panel, { y: 80, opacity: 0, duration: 0.3, ease: 'power2.in' })
+        .to([panel, closeBtn], { y: 80, opacity: 0, duration: 0.3, ease: 'power2.in' })
         .to(backdrop, { y: 1200, duration: 0.4, ease: 'power2.in' })
     }
   }, [project, rendered])
@@ -78,14 +80,14 @@ export function ProjectModal({ project, onClose, onSelectProject }) {
   return (
     <div className={styles.overlay}>
       <div ref={backdropRef} className={styles.backdrop} />
-      <button type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close">
+      <button ref={closeBtnRef} type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close">
         <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
           <path d="M1 1L8 8L15 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       <div ref={panelRef} className={styles.panel}>
         {activeProject?.caseStudy ? (
-          <ProjectCaseStudy project={activeProject} onSelectProject={onSelectProject} />
+          <ProjectCaseStudy project={activeProject} scrollerRef={panelRef} />
         ) : (
           <h2 className={styles.title}>{activeProject?.title}</h2>
         )}
