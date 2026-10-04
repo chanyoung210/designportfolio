@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useYouTubeBackground } from './useYouTubeBackground.js'
 import styles from './Nav.module.css'
 
-const LINKS = ['About', 'Portfolio', 'Review', 'Goal']
+const LINKS = ['About', 'Portfolio', 'Goal']
 const MUSIC_VIDEO_ID = 'K8wN9IK89vU'
 const MUSIC_PLAYER_ID = 'yt-bg-player'
 

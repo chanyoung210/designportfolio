@@ -19,40 +19,64 @@
   object-fit: cover;
 }
 
-.heroCaption {
+.heroBar {
   position: absolute;
-  inset: 0;
+  top: 80px;
+  left: 120px;
+  right: 120px;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  text-align: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.heroLogo {
-  height: 32px;
-  width: auto;
-}
-
-.heroTitle {
+.heroBarTitle {
   margin: 0;
   font-family: var(--font-hiikr);
-  font-size: 60px;
-  font-weight: 800;
-  color: #ffffff;
+  font-size: 64px;
   line-height: 1.1;
+  color: #222222;
 }
 
-.heroSubtitle {
-  margin: 0;
+.heroBarSubtitle {
+  margin: 8px 0 0;
   font-family: var(--font-pretendard);
   font-weight: 400;
   font-size: 20px;
-  color: #ffffff;
+  color: #222222;
+}
+
+.heroBarSide {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-hiikr);
+  font-size: 24px;
+  line-height: 1.21;
+  color: #848484;
+}
+
+.heroStacked {
+  padding-top: 80px;
+}
+
+.heroStacked .heroBar {
+  position: static;
+  padding: 0 120px;
+}
+
+.heroStacked > img {
+  display: block;
+  width: calc(100% - 60px);
+  margin: 60px 0 0 60px;
+  aspect-ratio: 1860 / 1020;
+  object-fit: cover;
+  border-radius: 16px 0 0 16px;
 }
 
 .scrollCue {
+  display: none; /* hidden for now — remove this line to bring the mouse cue back */
   position: absolute;
   left: 50%;
   bottom: 48px;
@@ -108,7 +132,7 @@
 }
 
 .background {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding-top: 120px;
 }
@@ -116,7 +140,7 @@
 h3.sectionTitle {
   margin: 0 0 28px;
   font-family: var(--font-pretendard);
-  font-size: 56px;
+  font-size: 106px;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 0;
@@ -155,68 +179,1919 @@ h3.sectionTitle {
   color: #ffffff;
 }
 
-.approachSection {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 200px;
+/* Light two-column variant (KICC): title left, body + meta left-aligned in the right half */
+.backgroundSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  padding: 120px 180px 0;
 }
 
-.approachRow {
-  display: flex;
-  align-items: flex-end;
+/* KICC layout is full-width with 180px side margins, so lift .wrap's 1400px cap */
+.wrap:has(> .backgroundSplit) {
+  max-width: none;
+}
+
+.backgroundSplit h3.sectionTitle {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.2;
+  color: #222222;
+}
+
+.backgroundSplit .backgroundContent {
+  width: fit-content;
+}
+
+.backgroundSplit .backgroundBody {
+  margin: 0 0 80px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #353535;
+}
+
+.backgroundSplit .backgroundMetaItem {
   gap: 16px;
 }
 
-.approachImage {
-  flex: 0 0 auto;
-  border-radius: 24px;
-  overflow: hidden;
+.backgroundSplit .backgroundMetaLabel {
+  font-size: 16px;
+  color: #595959;
 }
 
-.approachImage img {
-  display: block;
+.backgroundSplit .backgroundMetaValue {
+  font-size: 16px;
+  color: #222222;
 }
 
-.approachCard {
-  flex: 0 0 724px;
-  height: 734px;
-  box-sizing: border-box;
-  padding: 40px;
-  border-radius: 24px;
-  background: #eeeeee;
+/* Promo (forcans): text opener, then images stacked edge to edge */
+.wrap:has(> .promo) {
+  max-width: none;
+}
+
+/* shrink-wraps to the body's longest line, so the meta row spans exactly the text width */
+.promoHead {
+  width: fit-content;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 160px 24px 120px;
+  box-sizing: content-box;
+  color: #222222;
+}
+
+h2.promoTitle {
+  margin: 0;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.promoBody {
+  margin: 32px 0 80px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #353535;
+  white-space: pre-line;
+}
+
+.promoMeta {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 
-p.approachEnglish {
-  margin: 0;
-  font-size: 32px;
+.promoMeta div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.promoMeta span:first-child {
+  color: #8d8d8d;
+  text-transform: uppercase;
+}
+
+/* all four at 1400px wide, centered, 16px apart */
+.promoImage {
+  display: block;
+  width: 1400px;
+  max-width: calc(100% - 32px);
+  height: auto;
+  margin: 0 auto;
+  border-radius: 24px;
+}
+
+.promoImage + .promoImage {
+  margin-top: 16px;
+}
+
+@media (max-width: 1024px) {
+  h2.promoTitle {
+    font-size: 48px;
+  }
+
+  .promoMeta {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+/* Light single-column variant (AIWEB): one centered 780px column, text left-aligned */
+.backgroundCenter {
+  max-width: 780px;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.backgroundCenter h3.sectionTitle {
+  margin: 0 0 32px;
+  font-size: 28px;
+  line-height: 1.4;
+  color: #222222;
+  text-transform: uppercase;
+}
+
+.backgroundCenter .backgroundBody {
+  margin: 0 0 72px;
+  font-size: 20px;
   font-weight: 400;
+  line-height: 1.75;
+  color: #353535;
+  white-space: pre-line;
+}
+
+.backgroundCenter .backgroundMetaItem {
+  gap: 16px;
+}
+
+.backgroundCenter .backgroundMetaLabel {
+  font-size: 16px;
+  color: #8d8d8d;
+}
+
+.backgroundCenter .backgroundMetaValue {
+  font-size: 16px;
+  color: #222222;
+}
+
+/* AIWEB sections are full-bleed too; the centered overview keeps its own 780px cap */
+.wrap:has(> .backgroundCenter) {
+  max-width: none;
+}
+
+/* 100vh stage; the 16:9 video is ~81% of the stage and shrinks by whichever side runs out
+   first, so it never spills past the stage on wide/short screens */
+.videoStage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 120px;
+  overflow: hidden;
+  background: #0a74f5 no-repeat center / cover;
+}
+
+.videoStage video {
+  display: block;
+  width: min(81%, calc(81vh * 16 / 9));
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+.problem {
+  padding: 240px 24px 0;
+  background: #111111 no-repeat center top / cover;
+  text-align: center;
+}
+
+.problemLabel {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+h3.problemTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
   line-height: 1.5;
-  letter-spacing: 0;
+  color: #ffffff;
+  white-space: pre-line;
+}
+
+.problemBody {
+  margin: 24px 0 80px;
+  font-size: 20px;
+  line-height: 1.65;
+  color: #d4d4d4;
+  white-space: pre-line;
+}
+
+/* sits flush on the section's bottom edge */
+.problem img {
+  display: block;
+  width: 900px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.stakeholder {
+  padding: 120px 160px 80px;
+}
+
+.stakeholderLabel {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #222222;
+}
+
+h3.stakeholderTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
   color: #222222;
   white-space: pre-line;
 }
 
-.approachEnglish strong {
+.stakeholderBody {
+  margin: 24px 0 100px;
+  font-size: 20px;
+  line-height: 1.65;
+  color: #353535;
+  white-space: pre-line;
+}
+
+/* two 692px columns, right one lifted 120px for the staggered look */
+.stakeholderCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 692px));
+  justify-content: center;
+  gap: 16px;
+  align-items: start;
+}
+
+.stakeholderCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stakeholderCol:first-child {
+  margin-top: 120px;
+}
+
+.stakeholderCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 280px;
+  padding: 40px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.stakeholderCard span {
+  align-self: flex-end;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0d93d7;
+}
+
+.stakeholderCard p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #222222;
+  white-space: pre-line;
+}
+
+/* the lowest card trails off into the page instead of ending on a hard edge */
+.stakeholderCol:first-child .stakeholderCard:last-child {
+  -webkit-mask-image: linear-gradient(to bottom, #000 25%, transparent);
+  mask-image: linear-gradient(to bottom, #000 25%, transparent);
+}
+
+/* header reuses the stakeholder label/title/body styles */
+.audience {
+  padding-top: 120px;
+}
+
+.audienceHead {
+  padding: 0 180px;
+}
+
+.audience .stakeholderBody {
+  margin-bottom: 60px;
+}
+
+/* two 936x900 photo cards edge to edge with 16px gutters (16 + 936 + 16 + 936 + 16 = 1920);
+   the photos already carry their own rounded corners and dark tint */
+.audienceCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.audienceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 936 / 900;
+  padding: 24px;
+  border-radius: 16px;
+  background: #3a3a3a no-repeat center / cover;
+  text-align: center;
+  color: #ffffff;
+}
+
+.audienceCard h4 {
+  margin: 0 0 16px;
+  font-size: 24px;
   font-weight: 700;
 }
 
-.approachLabel {
+.audienceCard p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+/* dark section; header reuses the problem label/title styles */
+.direction {
+  margin-top: 16px;
+  padding: 120px 16px 100px;
+  background: #111111;
+  text-align: left;
+}
+
+.directionInner {
+  max-width: 1472px;
+  margin: 0 auto;
+}
+
+.directionHead {
+  padding-left: 16px;
+}
+
+.directionBody {
+  margin: 24px 0 30px;
+  font-size: 20px;
+  line-height: 1.65;
+  color: #d4d4d4;
+  white-space: pre-line;
+}
+
+/* 3 x 480px columns, staggered: left drops 124px, middle 344px, right stacks two cards */
+.directionCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 480px));
+  justify-content: center;
+  gap: 16px;
+  align-items: start;
+}
+
+.directionCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.directionCol:nth-child(1) {
+  margin-top: 124px;
+}
+
+.directionCol:nth-child(2) {
+  margin-top: 344px;
+}
+
+.directionCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 460px;
+  padding: 60px;
+  border-radius: 12px;
+  background: #1f1f1f;
+}
+
+.directionCard h4 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.directionCard h5 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.directionCard p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #666666;
+  white-space: pre-line;
+}
+
+/* full-width monitor mockup (1888 = 1920 - 2 x 16px), text pinned bottom-left */
+.directionConcept {
+  position: relative;
+  margin-top: 120px;
+}
+
+.directionConcept img {
   display: block;
-  margin: 0 0 12px;
+  width: 100%;
+  height: auto;
+}
+
+.directionConceptText {
+  position: absolute;
+  left: 80px;
+  bottom: 80px;
+  color: #ffffff;
+}
+
+.directionConceptText p {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.directionConceptText h4 {
+  margin: 0;
+  font-family: var(--font-hiikr);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* phones ride up over the monitor's bottom edge */
+.directionPhones {
+  position: relative;
+  display: block;
+  width: 1039px;
+  max-width: 100%;
+  height: auto;
+  margin: -160px auto 0;
+}
+
+/* almond "Define": dark section, header at 160px, problem rows split at the halfway line */
+.define {
+  margin-top: 120px;
+  padding: 160px 0 160px;
+  background: #1f1f1f;
+}
+
+.define > .problemLabel,
+h3.defineTitle {
+  padding: 0 160px;
+  text-align: left;
+}
+
+h3.defineTitle {
+  margin: 0;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #ffffff;
+  white-space: pre-line;
+}
+
+.defineProblem {
+  margin-top: 120px;
+}
+
+/* label column from 180px, content column from the halfway line; the right side only keeps
+   80px so Problem 02's long second line still fits on one line at 1920 */
+.defineRow {
+  display: grid;
+  /* % is of the content box (row - 260px): (content + 260) / 2 - 180 = content / 2 - 50 */
+  grid-template-columns: calc(50% - 50px) 1fr;
+  padding: 0 80px 0 180px;
+  color: #ffffff;
+}
+
+.defineRow h4,
+.defineRow h5 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.defineRow h5 {
+  text-transform: none;
+}
+
+.defineRow p {
+  margin: 24px 0 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #cdcdcd;
+  white-space: pre-line;
+}
+
+/* 1888px light card (16px from each edge) with the 1600px schedule panel centered */
+.definePanel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1000px;
+  margin: 80px 16px 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fbfbfc 0%, #eceef1 55%, #dfe2e7 100%);
+}
+
+.definePanel img {
+  display: block;
+  width: 1600px;
+  max-width: calc(100% - 120px);
+  height: auto;
+}
+
+.defineProblem + .defineProblem {
+  margin-top: 200px;
+}
+
+/* two 900px-tall light cards, caption at the top, illustration dead-center */
+.defineCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 80px 16px 0;
+}
+
+.defineCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 900px;
+  border-radius: 16px;
+  background: #f5f6f8;
+}
+
+.defineCard p {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #222222;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.defineCard img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .define > .problemLabel,
+  h3.defineTitle,
+  .defineRow {
+    padding: 0 24px;
+  }
+
+  .defineRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .definePanel {
+    height: auto;
+    padding: 40px 0;
+  }
+
+  .defineCards {
+    grid-template-columns: 1fr;
+  }
+
+  .defineCard {
+    height: 600px;
+  }
+}
+
+/* almond "Approach" design-system board */
+.system {
+  padding-top: 160px;
+}
+
+.systemHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 180px;
+}
+
+.systemHead > img {
+  display: block;
+  width: 290px; /* item04 is a 2x asset (580px) */
+  height: auto;
+}
+
+h3.systemTitle {
+  margin: 0;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #222222;
+  white-space: pre-line;
+}
+
+.systemIntro {
+  margin-top: 60px;
+  padding: 0 180px;
+  color: #222222;
+}
+
+.systemIntro h4 {
+  margin: 0 0 24px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.systemIntro p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.systemIntroSpaced {
+  margin-top: 180px;
+}
+
+/* full-width screenshot (16px from each edge) with a centered note under it */
+.systemFigure {
+  margin: 80px 16px 0;
+}
+
+.systemFigure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.systemFigure figcaption {
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #777777;
+  text-align: center;
+}
+
+/* almond "Approach" screens: header, then per-audience groups (photo + blue cards) */
+.screens {
+  padding-top: 200px;
+}
+
+.screensHead,
+.screensIntro {
+  padding: 0 180px;
+}
+
+.screensIntro {
+  margin-top: 120px;
+  color: #222222;
+}
+
+.screensIntro .stakeholderLabel {
+  text-transform: uppercase;
+}
+
+.screensIntro p:last-child {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* edge-to-edge photo */
+.screensPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 80px;
+}
+
+/* 1560px-max grid of 800px-tall gradient cards, 16px under the photo */
+.screensCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 1560px;
+  margin: 16px auto 0;
+  padding: 0 16px;
+  box-sizing: content-box;
+}
+
+.screensCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #4ec1ff 0%, #1c72d5 100%);
+}
+
+.screensCardWide {
+  grid-column: 1 / -1;
+}
+
+/* spans two 800px rows (800 + 16 + 800) */
+.screensCardTall {
+  grid-row: span 2;
+  height: auto;
+}
+
+/* grey variant (HQ admin): flat #DEE1E6 cards with dark labels */
+.screensCardsLight .screensCard {
+  background: #dee1e6;
+}
+
+.screensCardsLight .screensCardLabel {
+  color: #222222;
+}
+
+.screensCardLabel {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 1;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.screensCard img {
+  display: block;
+  max-width: calc(100% - 80px);
+  height: auto;
+}
+
+/* panel tucked into the top-right corner, running out the bottom */
+.screensCardRight img {
+  position: absolute;
+  top: 120px;
+  right: 0;
+  max-width: calc(100% - 40px);
+}
+
+@media (max-width: 1024px) {
+  .screensHead,
+  .screensIntro {
+    padding: 0 24px;
+  }
+
+  .screensCards {
+    grid-template-columns: 1fr;
+  }
+
+  .screensCard {
+    height: 600px;
+  }
+}
+
+/* AS-IS / TO-BE: two dark 790px-tall cards in a 1560px-max row */
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 1560px;
+  margin: 60px auto 0;
+  padding: 0 16px;
+  box-sizing: content-box;
+}
+
+.compareCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 790px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #181b1a;
+}
+
+.compareCard img {
+  display: block;
+  max-width: calc(100% - 40px);
+  height: auto;
+}
+
+/* layer panel hangs off the top-right edge and runs out the bottom */
+.compareLayers img {
+  position: absolute;
+  top: 98px;
+  right: 0;
+  max-width: 100%;
+}
+
+/* 4 x 460px columns, 2 x 460px rows (4 * 460 + 3 * 16 = 1888 = 1920 - 2 * 16) */
+.systemGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 460px 460px;
+  grid-template-areas:
+    'logo color icon charts'
+    'type color vars vars';
+  gap: 16px;
+  margin-top: 80px;
+  padding: 0 16px;
+}
+
+.systemCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #e1e4e8;
+}
+
+.systemCardLabel {
+  position: absolute;
+  top: 32px;
+  left: 30px;
+  z-index: 1;
   font-size: 16px;
   font-weight: 600;
   color: #222222;
 }
 
-.approachKorean {
+.systemLogo { grid-area: logo; }
+.systemColor { grid-area: color; }
+.systemIcon { grid-area: icon; }
+.systemCharts { grid-area: charts; }
+.systemType { grid-area: type; background: #ffffff; }
+.systemVars { grid-area: vars; }
+
+/* logo.svg is 347x60; the mono layer is the same shape filled #111111 via mask */
+.logoSwap {
+  position: relative;
+  width: 347px;
+  max-width: calc(100% - 60px);
+  aspect-ratio: 347 / 60;
+}
+
+.logoSwap img,
+.logoMono {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logoMono {
+  background: #111111;
+  mask: no-repeat center / contain;
+  -webkit-mask: no-repeat center / contain;
+  animation: logoSwap 6s ease-in-out infinite;
+}
+
+/* hold color ~2.4s, fade to #111111, hold ~2.4s, fade back */
+@keyframes logoSwap {
+  0%, 40% { opacity: 0; }
+  50%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.typeSample {
+  margin: 30px 0 0;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: #222222;
+  text-align: center;
+}
+
+/* blue row on top, then three pairs; swatches touch, each rounded */
+.systemSwatches {
+  position: absolute;
+  inset: 148px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.systemSwatches span {
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.systemSwatches span:first-child {
+  grid-column: 1 / -1;
+}
+
+/* 24px grid behind the icon */
+.systemIcon {
+  background-color: #e1e4e8;
+  background-image:
+    linear-gradient(#d5d8db 1px, transparent 1px),
+    linear-gradient(90deg, #d5d8db 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* intrinsic SVG size; enlarged via the inline scale in IconSwap */
+.iconSwap {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.systemTable {
+  position: absolute;
+  top: 98px;
+  left: 60px;
+  width: 702px;
+}
+
+.systemButtons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 299px;
+}
+
+/* title from 180px, description from the halfway line (same math as .defineRow) */
+.systemRow {
+  display: grid;
+  grid-template-columns: calc(50% - 50px) 1fr;
+  margin-top: 180px;
+  padding: 0 80px 0 180px;
+  color: #222222;
+}
+
+.systemRow h4 {
   margin: 0;
-  font-size: 32px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.systemRow p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* 5 x 320px cells (1600px, centered); SVG icons at their own canvas size (160–204px) */
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 320px));
+  justify-content: center;
+  justify-items: center;
+  row-gap: 150px;
+  margin-top: 120px;
+}
+
+.iconGrid img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Infographic: 4 square, text-free chart cards in a 1560px-max row (16px gaps) */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1560px;
+  margin: 60px auto 0;
+  padding: 0 16px;
+  box-sizing: content-box;
+}
+
+.infoCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 48px;
+  border-radius: 12px;
+  background: #e1e4e8;
+}
+
+/* bar type reuses .chartBars at full card height */
+.infoCard > .chartBars {
+  align-self: stretch;
+  margin: 0;
+}
+
+.infoSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* 10 x 10 rounded squares */
+.infoWaffle {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+  width: 100%;
+}
+
+.infoWaffle i {
+  aspect-ratio: 1;
+  border-radius: 4px;
+}
+
+
+/* sample chart: palette limited to blue (accent), black and greys */
+.chartSwap {
+  position: absolute;
+  inset: 90px 30px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartTitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.chartValue {
+  margin: 4px 0 0;
+  font-size: 28px;
   font-weight: 700;
   color: #222222;
+}
+
+.chartBars {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.chartBarCol {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+}
+
+.chartBarCol span {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  background: #b8bec6;
+  transition: height 0.6s cubic-bezier(0.65, 0, 0.35, 1), background-color 0.6s;
+}
+
+.chartBarCol span.chartBarAccent {
+  background: #2a76f2;
+}
+
+.chartBarCol em {
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  font-style: normal;
+  color: #8a8f98;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconSwap,
+  .chartBarCol span {
+    transition: none;
+  }
+
+  .logoMono {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .systemHead,
+  .systemIntro,
+  .systemRow {
+    padding: 0 24px;
+  }
+
+  .systemRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .iconGrid {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 60px;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 24px;
+  }
+
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .compareCard {
+    height: 600px;
+  }
+
+  .systemGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 460px);
+    grid-template-areas:
+      'logo icon'
+      'color charts'
+      'color type'
+      'vars vars';
+  }
+}
+
+/* UI showcase sections — header reuses the audience/stakeholder header styles */
+.uiSection {
+  padding-top: 120px;
+}
+
+.uiSection .stakeholderBody {
+  margin-bottom: 60px;
+}
+
+/* one tall card on the left, two stacked on the right (16px gutters, 692 + 16 + 692 = 1400) */
+.uiFeature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 692px 692px;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.uiFeature > :first-child {
+  grid-row: 1 / span 2;
+}
+
+/* mirrored: tall card on the right; left column is a 940px card over a 443px one (940 + 16 + 443 = 1399) */
+.uiFeatureReverse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 940px 443px;
+  grid-template-areas:
+    'a b'
+    'c b';
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.uiFeatureReverse > :nth-child(1) { grid-area: a; }
+.uiFeatureReverse > :nth-child(2) { grid-area: b; }
+.uiFeatureReverse > :nth-child(3) { grid-area: c; }
+
+/* two equal 900px-tall cards side by side */
+.uiPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 900px;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+/* full-width mockup above the cards: 16px from both edges and from the cards below */
+.uiSectionImage {
+  display: block;
+  width: calc(100% - 32px);
+  height: auto;
+  margin: 0 16px 16px;
+}
+
+/* screenshot sits dead-center of the card; the label is pinned top-left */
+.uiCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 60px; /* symmetric so the image stays centered while clearing the label */
+  border-radius: 8px;
+  background: #2b3345;
+  overflow: hidden;
+}
+
+.uiCardLabel {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.uiCard img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+/* auto carousel: track starts at the horizontal center, JS shifts it so the active card is centered.
+   Card sizes must match CAROUSEL_W / CAROUSEL_ACTIVE_W / CAROUSEL_GAP in ProjectCaseStudy.jsx */
+.carousel {
+  display: flex;
+  align-items: center;
+  height: 638px;
+  margin-top: 120px;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.carouselTrack {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 50%;
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.carouselTrack img {
+  display: block;
+  flex-shrink: 0;
+  width: 383px;
+  height: 510px;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1), height 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.carouselTrack img.carouselActive {
+  width: 479px;
+  height: 638px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselTrack,
+  .carouselTrack img {
+    transition: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .uiFeature {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .uiFeature > :first-child {
+    grid-row: auto;
+  }
+
+  .uiFeatureReverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas: 'a' 'b' 'c';
+  }
+
+  .uiPair {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+}
+
+/* CLIENT & APPLICANT •— (SERVICE)(EXPERIENCE)(PEOPLE) —• AIWEB */
+.diagram {
+  margin-top: 160px;
+  text-align: center;
+}
+
+.diagramRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagramEnd {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #ffffff;
+  text-align: left;
   white-space: pre-line;
+}
+
+/* 64px line with a 6px dot on the outer end, 20px from the label and 16px from the circles */
+.diagramLink {
+  position: relative;
+  width: 64px;
+  height: 1px;
+  margin: 0 16px 0 20px;
+  background: #ffffff;
+}
+
+.diagramLink::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.diagramLinkRight {
+  margin: 0 20px 0 16px;
+}
+
+.diagramLinkRight::before {
+  left: auto;
+  right: -3px;
+}
+
+.diagramCircles {
+  display: flex;
+}
+
+/* 320px circles overlapping 60px each */
+.diagramCircles span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #f5f6f8;
+  font-family: var(--font-hiikr);
+  font-size: 28px;
+  color: #010101;
+  text-transform: uppercase;
+}
+
+.diagramCircles span + span {
+  margin-left: -60px;
+}
+
+.diagramBody {
+  margin: 60px 0 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #595959;
+  white-space: pre-line;
+}
+
+@media (max-width: 1024px) {
+  .diagramRow {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .diagramLink {
+    display: none;
+  }
+
+  .diagramCircles span {
+    width: 200px;
+    height: 200px;
+    font-size: 20px;
+  }
+
+  .diagramCircles span + span {
+    margin-left: -40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .directionConceptText {
+    left: 24px;
+    bottom: 24px;
+  }
+
+  .directionPhones {
+    margin-top: -60px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .directionCards {
+    grid-template-columns: 1fr;
+  }
+
+  .directionCol:nth-child(n) {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .audienceHead {
+    padding: 0 24px;
+  }
+
+  .audienceCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .stakeholder {
+    padding: 120px 24px 80px;
+  }
+
+  .stakeholderCards {
+    grid-template-columns: 1fr;
+  }
+
+  .stakeholderCol:first-child {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .backgroundCenter {
+    padding: 120px 24px 0;
+  }
+}
+
+.statement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  margin-top: 120px;
+}
+
+.statementText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  background: #111111;
+  text-align: center;
+}
+
+.statementDots {
+  display: flex;
+  gap: 10px;
+}
+
+.statementDots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: dotJump 1.4s ease-in-out infinite;
+}
+
+.statementDots span:nth-child(1) { background: #ff5a5f; }
+.statementDots span:nth-child(2) { background: #ffc93c; animation-delay: 0.15s; }
+.statementDots span:nth-child(3) { background: #3ddc97; animation-delay: 0.3s; }
+.statementDots span:nth-child(4) { background: #4d9fff; animation-delay: 0.45s; }
+
+@keyframes dotJump {
+  0%, 50%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statementDots span {
+    animation: none;
+  }
+}
+
+.statementTitle {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #ffffff;
+  white-space: pre-line;
+}
+
+.statementBody {
+  margin: 0;
+  font-size: 15px;
+  color: #595959;
+}
+
+/* min-height: 0 stops the 960x1080 image from stretching the 100vh row on wide/short screens */
+.statementImage {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.kiccSection {
+  padding-top: 160px;
+}
+
+.kiccHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 180px 80px;
+}
+
+.kiccSection h3.sectionTitle {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.2;
+  color: #222222;
+}
+
+.approachBody {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #353535;
+  white-space: pre-line;
+}
+
+/* columns scale with the 1920 mockup: text starts at 370px, second column at the halfway line */
+.approachRow {
+  display: grid;
+  grid-template-columns: 370fr 590fr 960fr;
+  align-items: center;
+  min-height: 145px;
+  border-bottom: 1px solid #222222;
+  font-size: 18px;
+  color: #222222;
+}
+
+.approachRow > :first-child {
+  grid-column: 2;
+}
+
+.approachLabels {
+  min-height: 75px;
+  border-top: 1px solid #222222;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.approachDirection {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.approachDirection img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.goalHeading {
+  margin: 0 0 24px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #222222;
+  white-space: pre-line;
+}
+
+/* background strip is 1920x360: keep its native height and crop the sides on narrower screens */
+.goalStage {
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+  background: no-repeat center 45% / auto 360px;
+}
+
+.goalStage img {
+  position: relative;
+  z-index: 1;
+  width: 825px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* swatches run past the right edge on purpose — clipped, not wrapped */
+.palette {
+  display: flex;
+  margin-left: 40px;
+  overflow: hidden;
+  border-radius: 8px 0 0 8px;
+}
+
+.palette span {
+  flex-shrink: 0;
+  height: 140px;
+  padding: 24px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.elementsAssets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 60px 80px 0;
+}
+
+.elementsAssets figure {
+  margin: 0;
+}
+
+.elementsAssets figcaption {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.elementsAssets img,
+.elementsShowcase img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* transparent character art sits on a grey card instead of filling it */
+.elementsAssets img.elementsInset {
+  padding: 14%;
+  object-fit: contain;
+  background: #eaeaea;
+}
+
+.elementsShowcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 40px 40px 0;
+}
+
+.development {
+  margin-top: 40px;
+  padding: 160px 180px 0;
+  background: #111111 no-repeat center top / cover;
+}
+
+h3.developmentTitle {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
+  white-space: pre-line;
+}
+
+.developmentBody {
+  margin: 32px 0 80px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #c9c9c9;
+  white-space: pre-line;
+}
+
+.developmentScreens {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.developmentScreens figure {
+  margin: 0;
+  width: 520px;
+  text-align: center;
+}
+
+.developmentScreens figcaption {
+  margin-bottom: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.developmentScreens img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px 12px 0 0;
+}
+
+.final {
+  padding-top: 160px;
+  overflow: hidden;
+  text-align: center;
+}
+
+h3.finalTitle {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.finalBody {
+  margin: 24px 0 0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #353535;
+  white-space: pre-line;
+}
+
+/* staggered 3-column collage, proportions taken from the 1920 mockup:
+   180 margin | 380 col | 146 gap | 508 col | 146 gap | 380 col | 180 margin */
+.finalGrid {
+  display: grid;
+  grid-template-columns: 180fr 380fr 146fr 508fr 146fr 380fr 180fr;
+  grid-template-rows: auto 1fr; /* tall left column grows row 2, not row 1 */
+  align-items: start;
+  margin-top: 100px;
+  text-align: left;
+}
+
+.finalGrid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.finalLeft,
+.finalCenter,
+.finalRight {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.finalLeft {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin-top: 250px;
+}
+
+/* tax refund phone (494px) is wider than the 380px column — center it on the column */
+.finalLeft img:last-child {
+  width: 130%;
+  margin-left: -15%;
+}
+
+.finalCenter {
+  grid-column: 4;
+}
+
+.finalRight {
+  grid-column: 6;
+  margin-top: 80px;
+}
+
+.finalCaption {
+  padding-left: 12%;
+}
+
+.finalCaption h4 {
+  margin: 0 0 16px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.finalCaption p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #353535;
+  white-space: pre-line;
+}
+
+/* own row under both the center and right columns, so it always starts 80px below whichever ends lower */
+.finalGrid img.finalMockup {
+  grid-column: 4 / 8;
+  grid-row: 2;
+  width: 95.4%;
+  margin: 80px 0 0 3.3%;
+}
+
+/* pulled up under the goal phone so its bottom ~120px overlaps this section */
+.principles {
+  display: grid;
+  grid-template-columns: 370fr 760fr 790fr;
+  align-items: start;
+  margin-top: -120px;
+  padding: 320px 0 200px;
+  background: #111111 no-repeat center top / cover;
+}
+
+h3.principlesTitle {
+  grid-column: 2;
+  position: sticky;
+  top: 160px;
+  margin: 0;
+  font-family: var(--font-hiikr);
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.principlesList {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.principlesItemTitle {
+  position: relative;
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.principlesItemTitle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 2px;
+  background: #c9272f;
+}
+
+.principlesItemHeading {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.principlesItemBody {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #595959;
+  white-space: pre-line;
+}
+
+@media (max-width: 1024px) {
+  .kiccHead {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 24px 60px;
+  }
+
+  .approachRow {
+    grid-template-columns: 24px 1fr 1fr;
+    gap: 16px;
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 200px 24px 120px 44px;
+  }
+
+  h3.principlesTitle {
+    grid-column: 1;
+    position: static;
+  }
+}
+
+@media (max-width: 1024px) {
+  .backgroundSplit {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 120px 24px 0;
+  }
 }
 
 .interviewSection {
@@ -227,11 +2102,11 @@ p.approachEnglish {
 
 .interviewRow {
   display: flex;
-  gap: 80px;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .interviewBody {
-  flex: 1;
   margin: 0;
   font-size: 15px;
   font-weight: 400;
@@ -242,9 +2117,8 @@ p.approachEnglish {
 }
 
 .interviewList {
-  flex: 0 0 600px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 40px;
 }
 
@@ -313,56 +2187,34 @@ p.approachEnglish {
 }
 
 .insightSection {
-  padding-top: 200px;
-}
-
-.insightRow {
-  display: flex;
-  gap: 16px;
   width: 100vw;
+  height: 100vh;
   margin-left: calc(50% - 50vw);
+  display: flex;
+  align-items: center;
+  background: center / cover no-repeat;
 }
 
 .insightList {
-  flex: 0 0 calc(50% - 8px);
-  min-width: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 64px;
 }
 
 .insightList h3.sectionTitle {
   margin: 0;
-  width: 100%;
-  max-width: 600px;
-}
-
-.insightItem {
-  width: 100%;
-  max-width: 600px;
-}
-
-.insightImage {
-  flex: 0 0 calc(50% - 8px);
-  min-width: 0;
-}
-
-.insightImage img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .insightItemTitle {
   margin: 0 0 16px;
-  font-size: 34px;
+  font-family: var(--font-pretendard);
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.6;
   color: #ffffff;
-  white-space: pre-line;
 }
 
 .insightItemBody {
@@ -385,15 +2237,6 @@ p.approachEnglish {
   max-width: 1560px;
   margin: 0 auto 40px;
   text-align: left;
-  color: #595959;
-}
-
-.problemsTitleSuffix {
-  color: #ffffff;
-}
-
-.problemsCard {
-  position: relative;
 }
 
 .problemsCard video {
@@ -403,42 +2246,36 @@ p.approachEnglish {
 }
 
 .problemsText {
-  position: absolute;
-  top: 68.6%;
-  right: 9.38%;
-  transform: translateY(-50%);
-  width: 380px;
+  width: fit-content;
+  margin: 40px auto 120px;
 }
 
-.problemsNumber {
-  display: block;
-  font-size: 15px;
-  font-weight: 600;
+.problemsTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
   color: #ffffff;
 }
 
 .problemsBody {
-  margin: 10px 0 0;
-  font-size: 26px;
+  margin: 12px 0 0;
+  font-size: 20px;
   font-weight: 400;
-  color: #ffffff;
+  line-height: 1.6;
+  color: #c9c9c9;
   white-space: pre-line;
 }
 
 .problemsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  margin-top: 16px;
 }
 
 .problemsGridCell {
   height: 700px;
   border-radius: 12px;
   overflow: hidden;
-}
-
-.problemsGridImageCell {
   background: #0a0a0a;
   display: flex;
   align-items: center;
@@ -452,15 +2289,6 @@ p.approachEnglish {
   object-fit: contain;
 }
 
-.problemsGridText {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .solutionSection {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -470,7 +2298,7 @@ p.approachEnglish {
 
 .solutionSection h3.sectionTitle {
   max-width: 1560px;
-  margin: 0 auto 28px;
+  margin: 0 auto 48px;
 }
 
 .solutionRow {
@@ -525,18 +2353,16 @@ p.approachEnglish {
   width: calc(100vw - 32px);
   margin-left: calc(50% - 50vw + 16px);
   margin-top: 16px;
-  padding: 0 16px 100px 0;
+  padding: 0 16px 0 0;
   box-sizing: border-box;
   background-size: cover;
   background-position: center;
   border-radius: 12px;
-  text-align: center;
 }
 
 .solutionDetailRow {
   display: flex;
   gap: 16px;
-  margin-bottom: 60px;
 }
 
 .solutionDetailCol {
@@ -560,29 +2386,24 @@ p.approachEnglish {
   width: 45%;
 }
 
+.solutionIntro {
+  max-width: 1560px;
+  margin: 0 auto 40px;
+}
+
 .solutionDetailHeading {
-  max-width: 800px;
-  margin: 0 auto 24px;
+  margin: 0 0 24px;
   font-size: 40px;
   font-weight: 700;
   color: #ffffff;
 }
 
 .solutionDetailBody {
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
   font-size: 20px;
   font-weight: 400;
   color: #ffffff;
   white-space: pre-line;
-}
-
-.solutionDetail .solutionDetailHeading,
-.solutionDetail .solutionDetailBody {
-  max-width: 1560px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: right;
 }
 
 .removedSection {
@@ -743,11 +2564,7 @@ p.approachEnglish {
 }
 
 .retrospectiveSection {
-  max-width: 800px;
-  margin: 0 auto;
-  padding-top: 200px;
-  padding-bottom: 200px;
-  text-align: center;
+  padding: 200px 0;
 }
 
 .workoutCountSection .solutionDetailHeading,

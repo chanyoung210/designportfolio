@@ -1,33 +1,34 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './Goal.module.css'
 
-// Placeholder swatches stand in for the real per-segment preview photos —
-// swap `color` for an `image` path once they're ready. `slot` positions each
-// photo fully outside the headline's box (reference layout) so it never
-// covers the text, and doesn't follow the cursor.
-const SEGMENTS = {
-  ablock: { words: ['A', 'BLOCK-SHAPED'], color: '#7dd3fc', slot: { top: -130, left: '8%', rotate: -8 } },
-  designer: { words: ['DESIGNER'], color: '#a5b4fc', slot: { top: -130, right: -50, rotate: 7 } },
-  across: { words: ['ACROSS', 'DESIGN,'], color: '#86efac', slot: { top: '38%', right: -120, rotate: 10 } },
-  proto: { words: ['PROTOTYPING,'], color: '#fca5a5', slot: { bottom: -120, right: '12%', rotate: -6 } },
-  deploy: { words: ['AND', 'DEPLOYMENT.'], color: '#fdba74', slot: { top: '48%', left: -120, rotate: -8 } },
-}
-
 const LINES = [
-  ['ablock', 'designer'],
-  ['across', 'proto'],
-  ['deploy'],
+  ['A', 'BLOCK-SHAPED', 'DESIGNER'],
+  ['ACROSS', 'DESIGN,', 'PROTOTYPING,'],
+  ['AND', 'DEPLOYMENT.'],
 ]
 
 const CAPTION = '경계를 넘나들며, 두루 해낼 수 있는 디자이너가 되고자 합니다.'
 
+const TESTIMONIALS = [
+  {
+    quote: '항상 긍정적인 태도와 열정으로 맡은 역할을 해내고, 묵묵히 팀을 서포트해주셔서 고마웠어요.',
+    by: '디자인팀 팀장님',
+  },
+  {
+    quote: '예상치 못한 이슈가 생길 때마다 침착하게 해결해주셔서 든든했어요. 늘 믿고 의지할 수 있는 동료가 되어주셔서 감사해요!',
+    by: '디자인팀 팀원님',
+  },
+  {
+    quote: '퍼블리싱 이해도가 높아 소통이 원활했어요. 기획 변경에도 빠르게 대응하고 변경 사항을 명확히 설명해주셔서 협업하기 편했습니다.',
+    by: '개발팀 팀원님',
+  },
+]
+
 export function Goal() {
   const sectionRef = useRef(null)
-  const headlineRef = useRef(null)
   const wordRefs = useRef([])
-  const [hoverId, setHoverId] = useState(null)
 
   useEffect(() => {
     const words = wordRefs.current.filter(Boolean)
@@ -65,47 +66,19 @@ export function Goal() {
   return (
     <section id="goal" ref={sectionRef} className={styles.goal}>
       <div className={styles.content}>
-        <div className={styles.headline} ref={headlineRef} lang="en">
-          {LINES.map((segmentIds, li) => (
+        <div className={styles.headline} lang="en">
+          {LINES.map((words, li) => (
             <div key={li} className={styles.line}>
-              {segmentIds.map((id) => {
-                const seg = SEGMENTS[id]
+              {words.map((w, wi) => {
+                const idx = wordIndex++
                 return (
-                  <span
-                    key={id}
-                    className={styles.group}
-                    onMouseEnter={() => setHoverId(id)}
-                    onMouseLeave={() => setHoverId((cur) => (cur === id ? null : cur))}
-                  >
-                    {seg.words.map((w, wi) => {
-                      const idx = wordIndex++
-                      return (
-                        <span key={wi} className={styles.word} ref={(el) => (wordRefs.current[idx] = el)}>
-                          {w}
-                          {wi < seg.words.length - 1 ? ' ' : ''}
-                        </span>
-                      )
-                    })}
-                    {' '}
+                  <span key={wi} className={styles.word} ref={(el) => (wordRefs.current[idx] = el)}>
+                    {w}
+                    {wi < words.length - 1 ? ' ' : ''}
                   </span>
                 )
               })}
             </div>
-          ))}
-
-          {Object.entries(SEGMENTS).map(([id, seg]) => (
-            <div
-              key={id}
-              className={`${styles.photoSlot} ${hoverId === id ? styles.photoVisible : ''}`}
-              style={{
-                top: seg.slot.top,
-                left: seg.slot.left,
-                right: seg.slot.right,
-                bottom: seg.slot.bottom,
-                transform: `rotate(${seg.slot.rotate}deg)`,
-                background: seg.color,
-              }}
-            />
           ))}
         </div>
 
@@ -113,6 +86,14 @@ export function Goal() {
           <span className={styles.dash} />
           <p className={styles.caption}>{CAPTION}</p>
         </div>
+
+        <ul className={styles.testimonials}>
+          {TESTIMONIALS.map((t) => (
+            <li key={t.by}>
+              {t.quote} <span>- {t.by} -</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

@@ -174,11 +174,10 @@ export function ProjectCarousel({ active }) {
             <div
               key={project.id}
               ref={(el) => (cardRefs.current[i] = el)}
-              className={styles.card}
+              className={`${styles.card} ${project.darkText ? styles.cardDarkText : ''}`}
               onClick={() => setSelectedProject(project)}
             >
               <img src={project.image} alt="" className={styles.cardImage} />
-              <div className={styles.cardOverlay} />
               <div className={styles.cardTitle}>{project.title}</div>
               <div className={styles.cardTags}>
                 {project.tags.map((tag) => (

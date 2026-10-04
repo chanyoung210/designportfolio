@@ -4,6 +4,8 @@ import { useScramble } from '../Hero/useScramble.js'
 import styles from './FocusList.module.css'
 
 const ITEMS = ['User Experience', 'User Information', 'Content Design', 'Vibe Web Publishing']
+// hover preview per row, same order as ITEMS
+const PREVIEWS = ['/ux.jpg', '/ui.png', '/content.png', '/publishing.PNG']
 // Exit order: Vibe Web Publishing -> Content Design -> User Information -> User Experience
 const EXIT_ORDER = [3, 2, 1, 0]
 const ENTER_ORDER = [...EXIT_ORDER].reverse() // User Experience -> ... -> Vibe Web Publishing
@@ -26,6 +28,8 @@ export function FocusList() {
   // Only the very first hover (nothing active yet) snaps the box open
   // instantly — every hover after that slides between stacked layers.
   const [instant, setInstant] = useState(false)
+  // Track position to hold while the box is sliding out / hidden.
+  const lastIndexRef = useRef(0)
 
   useEffect(() => {
     const el = containerRef.current
@@ -328,6 +332,7 @@ export function FocusList() {
   }
 
   const handleRowEnter = (i) => {
+    lastIndexRef.current = i
     if (activeIndex === null) {
       setInstant(true)
       setActiveIndex(i)
@@ -361,20 +366,31 @@ export function FocusList() {
         </div>
       ))}
 
+      {/* All previews sit edge to edge on one track that moves as a single
+          piece, so switching rows (even mid-slide) can never open a gap
+          between two images. The outer `slide` handles entering/leaving the
+          box; the track keeps its last position while hidden. */}
       <div className={styles.floatImage} style={{ left: pos.x, top: pos.y }}>
-        {ITEMS.map((item, i) => {
-          const yPos = activeIndex === null ? '100%' : i < activeIndex ? '-100%' : i > activeIndex ? '100%' : '0%'
-          return (
-            <div
-              key={item}
-              className={styles.layer}
-              style={{ transform: `translateY(${yPos})`, transitionDuration: instant ? '0ms' : '400ms' }}
-            >
-              {/* placeholder — swap for the real preview image per item */}
-              <span className={styles.number}>{i + 1}</span>
-            </div>
-          )
-        })}
+        <div
+          className={styles.slide}
+          style={{
+            transform: `translateY(${activeIndex === null ? '100%' : '0%'})`,
+            transitionDuration: instant ? '0ms' : '400ms',
+          }}
+        >
+          <div
+            className={styles.track}
+            style={{
+              transform: `translateY(${-(activeIndex ?? lastIndexRef.current) * 100}%)`,
+              transitionDuration: instant ? '0ms' : '400ms',
+            }}
+          >
+            {ITEMS.map((item, i) => (
+              <img key={item} className={styles.layer} style={{ top: `${i * 100}%` }} src={PREVIEWS[i]} alt="" />
+
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

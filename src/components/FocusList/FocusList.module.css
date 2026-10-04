@@ -37,8 +37,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 280px;
-  height: 380px;
+  width: 308px;
+  height: 418px;
   overflow: hidden;
   border-radius: 12px;
   transform: translate(-50%, -50%);
@@ -46,21 +46,20 @@
   z-index: 5;
 }
 
-.layer {
+.slide,
+.track {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  box-sizing: border-box;
   transition-property: transform;
   transition-timing-function: ease;
 }
 
-.number {
-  font-family: var(--font-pretendard);
-  font-size: 40px;
-  font-weight: 700;
-  color: #000000;
+/* stacked one box-height apart inside .track (top set inline); fills the box */
+.layer {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -36,13 +36,17 @@ export function ProjectModal({ project, onClose }) {
       // Locking overflow removes the scrollbar, which shrinks the page by
       // its width and shifts everything sideways — pad that width back in
       // so locking the scroll doesn't itself cause a visible jump.
+      //
+      // Lock <html> only. Also setting body overflow:hidden turns <body> into
+      // a scroll container (html's overflow is no longer visible, so body's
+      // stops propagating to the viewport), and that releases every
+      // position:sticky on the page — the background section visibly jumps
+      // by however far it had been scrolled before the modal rises over it.
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
       document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
       if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`
     } else {
       document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
       document.body.style.paddingRight = ''
     }
 
@@ -69,7 +73,6 @@ export function ProjectModal({ project, onClose }) {
   useEffect(
     () => () => {
       document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
       document.body.style.paddingRight = ''
     },
     []
@@ -79,7 +82,11 @@ export function ProjectModal({ project, onClose }) {
 
   return (
     <div className={styles.overlay}>
-      <div ref={backdropRef} className={styles.backdrop} />
+      <div
+        ref={backdropRef}
+        className={styles.backdrop}
+        style={{ background: activeProject?.caseStudy?.pageBackground }}
+      />
       <button ref={closeBtnRef} type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close">
         <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
           <path d="M1 1L8 8L15 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

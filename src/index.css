@@ -83,7 +83,11 @@ body {
   font-family: var(--font-pretendard);
   font-size: var(--fs-16);
   line-height: var(--lh-body);
-  overflow-x: hidden;
+  /* clip, not hidden: when ProjectModal locks <html>, an overflow-x:hidden body
+     stops propagating to the viewport and becomes its own scroll container,
+     which un-sticks every position:sticky (Portfolio part 1 jumped up by however
+     far it had been scrolled). clip never creates a scroll container. */
+  overflow-x: clip;
 }
 
 h1,
