@@ -1089,7 +1089,8 @@ h3.systemTitle {
 
 .typeSample {
   margin: 30px 0 0;
-  font-size: 56px;
+  /* scales with the card (460px at 1920) so the sample never crowds it */
+  font-size: min(56px, 2.9vw);
   font-weight: 400;
   line-height: 1.9;
   color: #222222;
@@ -1549,18 +1550,20 @@ h3.systemTitle {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 320px;
-  height: 320px;
+  /* 320px at 1920, shrinking on laptops so the labels keep clear of the edges */
+  --d: min(320px, 21vw);
+  width: var(--d);
+  height: var(--d);
   border-radius: 50%;
   background: #f5f6f8;
   font-family: var(--font-hiikr);
-  font-size: 28px;
+  font-size: calc(var(--d) * 0.0875); /* 28px at 320 */
   color: #010101;
   text-transform: uppercase;
 }
 
 .diagramCircles span + span {
-  margin-left: -60px;
+  margin-left: calc(var(--d) * -0.1875); /* 60px overlap at 320 */
 }
 
 .diagramBody {
@@ -2923,3 +2926,31 @@ h3.principlesTitle {
   line-height: 1.7;
 }
 
+
+/* SleeFit on laptop widths: these sections were sized for 1920 (1400/1560px
+   caps with no side padding), so below that their text ran into the screen
+   edge. Inset the text; images/cards keep their existing gutters. */
+@media (max-width: 1600px) {
+  .interviewSection,
+  .removedSection,
+  .workoutCountSection {
+    padding-inline: 40px;
+  }
+
+  .problemsSection h3.sectionTitle,
+  .solutionSection h3.sectionTitle,
+  .solutionSection .solutionDetailHeading,
+  .solutionSection .solutionDetailBody {
+    padding-inline: 24px;
+  }
+}
+
+/* almond Define on laptop widths: the right column narrows, so the hand-placed
+   line breaks left one- or two-syllable orphans ("…대응했습니 / 다."). Let it
+   flow instead and balance the last line. */
+@media (max-width: 1600px) {
+  .defineRow p {
+    white-space: normal;
+    text-wrap: pretty;
+  }
+}

@@ -20,7 +20,9 @@
 .title {
   margin: 24px 0;
   font-family: var(--font-hiikr);
-  font-size: 148px;
+  /* the line is ~11.6em wide: scale with the 200px-padded row so it always fits,
+     capped at the 148px it was designed at for 1920 */
+  font-size: min(148px, calc((100vw - 200px) / 11.7));
   letter-spacing: -1px;
   color: #000000;
   white-space: nowrap;

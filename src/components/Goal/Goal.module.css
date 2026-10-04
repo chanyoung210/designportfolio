@@ -19,7 +19,9 @@
   position: relative;
   text-align: left;
   font-family: var(--font-hiikr);
-  font-size: 80px;
+  /* longest line ("ACROSS DESIGN, PROTOTYPING,") is ~15.6em: shrink with the
+     200px-padded section so it never clips, capped at the designed 80px */
+  font-size: min(80px, calc((100vw - 200px) / 15.8));
   line-height: var(--lh-tight);
 }
 

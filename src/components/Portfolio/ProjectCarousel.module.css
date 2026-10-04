@@ -59,6 +59,14 @@
   z-index: 2;
 }
 
+/* Scales the whole card row down on short viewports (set in JS) so the
+   574px center card stays clear of the title/corner copy; 1 on 900px+. */
+.stage {
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+}
+
 .track {
   position: absolute;
   top: 50%;

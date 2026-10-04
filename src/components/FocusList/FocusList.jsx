@@ -25,11 +25,18 @@ export function FocusList() {
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(0)
 
-  // Only the very first hover (nothing active yet) snaps the box open
-  // instantly — every hover after that slides between stacked layers.
-  const [instant, setInstant] = useState(false)
-  // Track position to hold while the box is sliding out / hidden.
-  const lastIndexRef = useRef(0)
+  // True from the moment the rows start leaving for Portfolio until they're
+  // back: the hover preview is forced off and can't be re-triggered, so it
+  // can never be left hanging over Portfolio however the page got there.
+  const previewBlockedRef = useRef(false)
+  const activeRef = useRef(null) // mirrors activeIndex for the pointer hit-test below
+  const setPreviewBlocked = (blocked) => {
+    previewBlockedRef.current = blocked
+    if (blocked) {
+      activeRef.current = null
+      setActiveIndex(null)
+    }
+  }
 
   useEffect(() => {
     const el = containerRef.current
@@ -131,6 +138,7 @@ export function FocusList() {
 
       const playForward = () => {
         state = 'animating'
+        setPreviewBlocked(true)
         const tl = gsap.timeline({
           onComplete: () => {
             tweenScrollTo(measurePortfolioTop(), 0.5, () => {
@@ -159,6 +167,7 @@ export function FocusList() {
           state = 'idle'
           accum = 0
           markSettled()
+          setPreviewBlocked(false)
         })
         const tl = gsap.timeline()
         ENTER_ORDER.forEach((idx, i) => {
@@ -294,11 +303,13 @@ export function FocusList() {
         const landingForward = targetY >= measureBoundary()
         gsap.set(rowRefs.current, landingForward ? { xPercent: -120, opacity: 0 } : { xPercent: 0, opacity: 1 })
         state = 'externalNav'
+        if (landingForward) setPreviewBlocked(true)
         tweenScrollTo(targetY, 0.6, () => {
           // idle/forwardDone are free-scroll states — leave lockedAt null
           // (tweenScrollTo already cleared it) or every scroll attempt
           // after landing gets yanked straight back here forever.
           state = landingForward ? 'forwardDone' : 'idle'
+          setPreviewBlocked(landingForward)
           markSettled()
         })
       }
@@ -326,35 +337,66 @@ export function FocusList() {
     }
   }, [])
 
-  const handleMouseMove = (e) => {
-    const rect = containerRef.current.getBoundingClientRect()
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-  }
-
-  const handleRowEnter = (i) => {
-    lastIndexRef.current = i
-    if (activeIndex === null) {
-      setInstant(true)
-      setActiveIndex(i)
-      setTimeout(() => setInstant(false), 50)
-    } else {
-      setActiveIndex(i)
+  // The preview is derived purely from what's under the cursor: on every
+  // mouse move and every scroll (which slides the rows under a still cursor
+  // without firing mouseleave) we hit-test the pointer and show the row it's
+  // over — or nothing. So the box can't be left behind over Portfolio or
+  // anywhere else once no row is under the pointer, however the page moved.
+  useEffect(() => {
+    // the box mounts fresh on each hover — warm the cache so it never pops in blank
+    PREVIEWS.forEach((src) => {
+      new Image().src = src
+    })
+    let pointer = null
+    let frame = 0
+    const sync = () => {
+      frame = 0
+      if (!pointer || !containerRef.current) return
+      const row = document.elementFromPoint(pointer.x, pointer.y)?.closest?.('[data-focus-row]')
+      const next =
+        row && containerRef.current.contains(row) && !previewBlockedRef.current ? Number(row.dataset.focusRow) : null
+      // nothing shown and nothing to show: skip the re-render (this runs for
+      // every mouse move anywhere on the page)
+      if (next === null && activeRef.current === null) return
+      const rect = containerRef.current.getBoundingClientRect()
+      setPos({ x: pointer.x - rect.left, y: pointer.y - rect.top })
+      if (next === activeRef.current) return
+      activeRef.current = next
+      setActiveIndex(next)
     }
-  }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(sync)
+    }
+    const onMove = (e) => {
+      pointer = { x: e.clientX, y: e.clientY }
+      schedule()
+    }
+    const onOut = (e) => {
+      if (!e.relatedTarget) {
+        pointer = null
+        activeRef.current = null
+        setActiveIndex(null)
+      }
+    }
+    window.addEventListener('mousemove', onMove, { passive: true })
+    window.addEventListener('scroll', schedule, { passive: true })
+    document.addEventListener('mouseout', onOut)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('scroll', schedule)
+      document.removeEventListener('mouseout', onOut)
+    }
+  }, [])
 
   return (
-    <section
-      ref={containerRef}
-      className={styles.section}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => setActiveIndex(null)}
-    >
+    <section ref={containerRef} className={styles.section}>
       {ITEMS.map((item, i) => (
         <div
           key={item}
           ref={(el) => (rowRefs.current[i] = el)}
           className={`${styles.row} ${activeIndex === i ? styles.active : ''}`}
-          onMouseEnter={() => handleRowEnter(i)}
+          data-focus-row={i}
         >
           <ScrambleLabel
             text={item}
@@ -368,30 +410,18 @@ export function FocusList() {
 
       {/* All previews sit edge to edge on one track that moves as a single
           piece, so switching rows (even mid-slide) can never open a gap
-          between two images. The outer `slide` handles entering/leaving the
-          box; the track keeps its last position while hidden. */}
-      <div className={styles.floatImage} style={{ left: pos.x, top: pos.y }}>
-        <div
-          className={styles.slide}
-          style={{
-            transform: `translateY(${activeIndex === null ? '100%' : '0%'})`,
-            transitionDuration: instant ? '0ms' : '400ms',
-          }}
-        >
-          <div
-            className={styles.track}
-            style={{
-              transform: `translateY(${-(activeIndex ?? lastIndexRef.current) * 100}%)`,
-              transitionDuration: instant ? '0ms' : '400ms',
-            }}
-          >
+          between two images. The box only exists while a row is under the
+          cursor: it appears in place and is removed outright when the cursor
+          leaves — no slide-out that could linger or show another image. */}
+      {activeIndex !== null && (
+        <div className={styles.floatImage} style={{ left: pos.x, top: pos.y }}>
+          <div className={styles.track} style={{ transform: `translateY(${-activeIndex * 100}%)` }}>
             {ITEMS.map((item, i) => (
               <img key={item} className={styles.layer} style={{ top: `${i * 100}%` }} src={PREVIEWS[i]} alt="" />
-
             ))}
           </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }

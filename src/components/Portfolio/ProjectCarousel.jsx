@@ -11,6 +11,8 @@ const BASE_H = 487
 const GAP = 8
 const STEP = CARD_W + GAP
 const CENTER_EXTRA_H = 87
+const MAX_CARD_H = BASE_H + CENTER_EXTRA_H
+const STAGE_RESERVED_H = 320 // 160px clear above and below the centered card
 
 function ScrambleText({ text, active, duration, className }) {
   const display = useScramble(text, { active, duration })
@@ -54,6 +56,20 @@ export function ProjectCarousel({ active }) {
   const prepareAndPlayRef = useRef(null)
   const leaveRef = useRef(null)
   const scrollTriggerRef = useRef(null)
+  const stageRef = useRef(null)
+
+  // The title (~160px from the top) and the corner copy (~130px from the
+  // bottom) are fixed; on laptop-height screens the full-size center card
+  // would run into them, so shrink the row until it fits between.
+  useEffect(() => {
+    const fit = () => {
+      const scale = Math.min(1, (window.innerHeight - STAGE_RESERVED_H) / MAX_CARD_H)
+      stageRef.current.style.transform = scale < 1 ? `scale(${scale})` : ''
+    }
+    fit()
+    window.addEventListener('resize', fit)
+    return () => window.removeEventListener('resize', fit)
+  }, [])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -169,6 +185,7 @@ export function ProjectCarousel({ active }) {
         <ScrambleText text={BOTTOM_LEFT} active={active} duration={900} className={styles.bottomLeft} />
         <ScrambleText text={BOTTOM_RIGHT} active={active} duration={750} className={styles.bottomRight} />
 
+        <div ref={stageRef} className={styles.stage}>
         <div ref={trackRef} className={styles.track}>
           {PROJECTS.map((project, i) => (
             <div
@@ -187,6 +204,7 @@ export function ProjectCarousel({ active }) {
               <div className={styles.cardSeeMore}>See more →</div>
             </div>
           ))}
+        </div>
         </div>
       </div>
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
