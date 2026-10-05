@@ -57,12 +57,14 @@
 .testimonials {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: -24px 0 0;
+  gap: 12px;
+  margin: 0; /* full 44px column gap below the caption */
   padding: 0 0 0 44px;
   list-style: none;
   font-family: var(--font-pretendard);
-  font-size: 13px;
+  /* longest testimonial is ~57em: keep each on one line by easing below 18px
+     only when the 200px-padded section (minus the 44px indent) runs short */
+  font-size: min(18px, calc((100vw - 244px) / 58.5));
   line-height: 1.6;
   color: #6b6b6b;
 }
