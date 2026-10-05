@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "gsap": "^3.12.5",
@@ -18,8 +20,10 @@
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "gh-pages": "^6.3.0",
     "jsdom": "^24.1.1",
     "vite": "^5.4.0",
     "vitest": "^2.0.5"
-  }
+  },
+  "homepage": "https://chanyoung210.github.io/designportfolio"
 }

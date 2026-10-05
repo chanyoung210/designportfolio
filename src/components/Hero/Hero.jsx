@@ -20,14 +20,14 @@ export function Hero() {
     <section id="hero" className={styles.hero}>
       <div className={styles.heroContent}>
         <img
-          src="/hero/me.png"
+          src="hero/img_hero_profile.png"
           alt=""
           className={`${styles.photo} ${titleDone ? styles.fadeIn : ''}`}
         />
         <div className={styles.stack} lang="en">
           <div className={`${styles.icons} ${styles.fadeIn}`}>
-            <img src="/hero/star.svg" alt="" className={styles.starRotated} width="24" height="24" />
-            <img src="/hero/star.svg" alt="" width="24" height="24" />
+            <img src="common/ico_star.svg" alt="" className={styles.starRotated} width="24" height="24" />
+            <img src="common/ico_star.svg" alt="" width="24" height="24" />
           </div>
           {TITLE_UNITS.map((word, i) => (
             <Scramble
@@ -46,7 +46,7 @@ export function Hero() {
               duration={200}
               onDone={() => setTitleStep(TITLE_UNITS.length + 1)}
             />
-            <img src="/hero/horse.png" alt="" width="24" height="24" />
+            <img src="hero/img_hero_horse.png" alt="" width="24" height="24" />
           </div>
         </div>
       </div>

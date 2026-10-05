@@ -5,7 +5,7 @@ import styles from './FocusList.module.css'
 
 const ITEMS = ['User Experience', 'User Information', 'Content Design', 'Vibe Web Publishing']
 // hover preview per row, same order as ITEMS
-const PREVIEWS = ['/ux.jpg', '/ui.png', '/content.png', '/publishing.PNG']
+const PREVIEWS = ['focus/img_focus_ux.jpg', 'focus/img_focus_ui.png', 'focus/img_focus_content.png', 'focus/img_focus_publishing.png']
 // Exit order: Vibe Web Publishing -> Content Design -> User Information -> User Experience
 const EXIT_ORDER = [3, 2, 1, 0]
 const ENTER_ORDER = [...EXIT_ORDER].reverse() // User Experience -> ... -> Vibe Web Publishing

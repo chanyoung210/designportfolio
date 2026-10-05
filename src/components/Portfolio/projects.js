@@ -6,7 +6,7 @@
 const KICC_CASE_STUDY = {
   pageBackground: '#F5F7F8',
   heroStacked: true,
-  heroImage: '/protfolio/kicc/visual.png',
+  heroImage: 'portfolio/kicc/img_visual.png',
   heroBar: {
     title: '한국정보통신',
     subtitle: 'Korea Information & Communications Tour Bus & Tax Refund',
@@ -26,7 +26,7 @@ const KICC_CASE_STUDY = {
   statement: {
     title: 'Different languages. One recognizable journey.\nFrom booking to boarding.',
     body: '언어가 달라도, 예매부터 탑승까지 하나의 일관된 여정으로 이어지도록',
-    image: '/protfolio/kicc/item01.png',
+    image: 'portfolio/kicc/img_statement_lines.png',
   },
   approach: {
     title: 'Design Approach',
@@ -35,17 +35,17 @@ const KICC_CASE_STUDY = {
     items: [
       {
         task: '4개 언어에서 일관된 정보 전달',
-        icon: '/protfolio/kicc/item02.png',
+        icon: 'portfolio/kicc/ico_approach_language.png',
         direction: '언어별 문장 길이를 고려한 배치와 공통된 시각적 위계',
       },
       {
         task: '예매 단계에서 탑승할 버스를 미리 인지',
-        icon: '/protfolio/kicc/item03.png',
+        icon: 'portfolio/kicc/ico_approach_brand.png',
         direction: '실제 차량 이미지와 브랜드 요소로 탑승 대상 안내',
       },
       {
         task: '기존 UI 구조 안에서 주요 기능 강조',
-        icon: '/protfolio/kicc/item04.png',
+        icon: 'portfolio/kicc/ico_approach_contrast.png',
         direction: '컬러와 대비로 예약 버튼과 운행 정보의 우선순위 구분',
       },
     ],
@@ -54,8 +54,8 @@ const KICC_CASE_STUDY = {
     title: 'Project Goal',
     heading: '예매 화면에서 시작해,\n현장 탑승까지 이어지는 일관된 경험',
     body: '사용하는 언어에 관계없이 예매와 탑승 정보를 쉽게 이해하고,\n화면에서 확인한 버스를 공항에서도 알아볼 수 있도록 돕습니다.',
-    background: '/protfolio/kicc/goal-background.png',
-    phone: '/protfolio/kicc/phone.png',
+    background: 'portfolio/kicc/bg_goal.png',
+    phone: 'portfolio/kicc/img_goal_phone.png',
   },
   elements: {
     title: 'Design Elements',
@@ -70,36 +70,36 @@ const KICC_CASE_STUDY = {
       { label: 'HEX EFF5F6', color: '#EFF5F6', width: 240, light: true },
     ],
     assets: [
-      { label: 'a. Imagery', image: '/protfolio/kicc/item05.png' },
-      { label: 'b. Typography', image: '/protfolio/kicc/item05-5.png' },
-      { label: 'c. Brand Assets', image: '/protfolio/kicc/item06.png', inset: true },
+      { label: 'a. Imagery', image: 'portfolio/kicc/img_elements_imagery.png' },
+      { label: 'b. Typography', image: 'portfolio/kicc/img_elements_typography.png' },
+      { label: 'c. Brand Assets', image: 'portfolio/kicc/img_elements_character.png', inset: true },
     ],
-    showcase: ['/protfolio/kicc/item07.png', '/protfolio/kicc/item08.png'],
+    showcase: ['portfolio/kicc/img_elements_logo.png', 'portfolio/kicc/img_elements_bus.png'],
   },
   development: {
     title: 'Design\nDevelopment',
     body: '기존 UI 구조를 유지하면서 브랜드 컬러로 예약 버튼을 강조하고,\n차량 이미지와 브랜드 요소로 탑승할 버스를 안내하는 시안을 제안했습니다.',
-    background: '/protfolio/kicc/dv-background.png',
+    background: 'portfolio/kicc/bg_development.png',
     screens: [
-      { label: 'Wireframe', image: '/protfolio/kicc/ui01.png' },
-      { label: 'Design Proposal', image: '/protfolio/kicc/ui02.png' },
+      { label: 'Wireframe', image: 'portfolio/kicc/img_development_wireframe.png' },
+      { label: 'Design Proposal', image: 'portfolio/kicc/img_development_proposal.png' },
     ],
   },
   finalScreens: {
     title: 'Final Screens',
     body: '브랜드 컬러와 차량 이미지를 적용해,\n투어버스 예약과 운행 정보부터 공항 환급 안내까지 일관된 디자인으로 구성했습니다.',
-    left: ['/protfolio/kicc/full02.png', '/protfolio/kicc/full05.png'],
+    left: ['portfolio/kicc/img_final_live_location.png', 'portfolio/kicc/img_final_tax_refund.png'],
     center: {
-      image: '/protfolio/kicc/full01.png',
+      image: 'portfolio/kicc/img_final_main.png',
       title: 'Tax Refund',
       body: '공항 환급 서비스의 특징과 이용 절차를 정리하고,\n환급 방식별 차이를 비교하기 쉽게 구성했습니다.',
-      mockup: '/protfolio/kicc/full-background.png',
+      mockup: 'portfolio/kicc/img_final_mockup.png',
     },
-    right: ['/protfolio/kicc/full03.png', '/protfolio/kicc/full04.png'],
+    right: ['portfolio/kicc/img_final_route.png', 'portfolio/kicc/img_final_faq.png'],
   },
   principles: {
     title: 'UX Principles',
-    background: '/protfolio/kicc/ux-background.png',
+    background: 'portfolio/kicc/bg_principles.png',
     items: [
       {
         title: 'Language',
@@ -127,7 +127,7 @@ const KICC_CASE_STUDY = {
 
 const KOOKMIN_CASE_STUDY = {
   pageBackground: '#F5F7F8',
-  heroImage: '/protfolio/kookmin/visual.png',
+  heroImage: 'portfolio/kookmin/img_visual.png',
   promo: {
     title: 'Promotion Design',
     body: 'KB국민은행 블랙프라이데이 제안서용으로 제작한 프로모션 디자인입니다. 12개 제휴 브랜드 결제 시 자동 페이백과 럭키드로우 응모까지, 사용자의 행동을 최소화하면서 혜택을 빠르게 인지시킬 수 있도록 배너와 상세 페이지를 구성했습니다.',
@@ -136,13 +136,13 @@ const KOOKMIN_CASE_STUDY = {
       { label: 'Company', value: '(주)에이아이웹' },
       { label: 'Role', value: 'Design (100%)' },
     ],
-    images: ['01', '02', '03'].map((n) => `/protfolio/kookmin/${n}.png`),
+    images: ['01', '02', '03'].map((n) => `portfolio/kookmin/img_promo_${n}.png`),
   },
 }
 
 const FORCANS_CASE_STUDY = {
   pageBackground: '#F5F7F8',
-  heroImage: '/protfolio/forcans/visual.png', // full-screen visual, no title bar
+  heroImage: 'portfolio/forcans/img_visual.png', // full-screen visual, no title bar
   promo: {
     title: 'Promotion Design',
     body: '포켄스 강아지의 날 메가위크 프로모션에서 배너와 이벤트 페이지 디자인을 담당한 개인 작업입니다. 할인 혜택과 웰컴 쿠폰 등\n프로모션 정보를 사용자가 한눈에 파악할 수 있도록 비주얼과 레이아웃을 구성했습니다.',
@@ -151,13 +151,13 @@ const FORCANS_CASE_STUDY = {
       { label: 'Company', value: '(주)포켄스' },
       { label: 'Role', value: 'Design (100%)' },
     ],
-    images: ['01', '02', '03', '04'].map((n) => `/protfolio/forcans/${n}.png`),
+    images: ['01', '02', '03', '04'].map((n) => `portfolio/forcans/img_promo_${n}.png`),
   },
 }
 
 const ALMOND_CASE_STUDY = {
   pageBackground: '#F5F7F8',
-  heroImage: '/protfolio/almond/visual.png',
+  heroImage: 'portfolio/almond/img_visual.png',
   heroBar: {
     title: 'almond',
     subtitle: 'UI Design & Developer Handoff',
@@ -185,15 +185,15 @@ const ALMOND_CASE_STUDY = {
         label: 'Problem 01',
         heading: '반복 수정으로 줄어드는 신규 UI 제작 시간',
         body: '학생·지점·본사 UI를 단독 담당하며 수정과 QA 추가 화면에 대응했습니다.\n상시 업무까지 병행해 신규 UI 제작에 집중할 수 있는 시간은 주당 1~2일이었습니다.',
-        panel: '/protfolio/almond/item01.png',
+        panel: 'portfolio/almond/img_define_schedule.png',
       },
       {
         label: 'Problem 02',
         heading: '혼재된 디자인 기준과 구현을 위한 정리 필요',
         body: '여러 시안의 요소가 결합되면서 색상·컴포넌트의 공통 기준이 필요했습니다.\n전담 퍼블리셔가 없는 환경에서 디자인을 개발 구현으로 연결할 화면 구조와 전달 방식도 정리해야 했습니다.',
         cards: [
-          { text: '공통 UI 기준 부재\n시안마다 다른 색상과 컴포넌트 기준', image: '/protfolio/almond/item02.png' },
-          { text: '전담 퍼블리셔 부재\n디자인을 구현으로 연결할 방식 필요', image: '/protfolio/almond/item03.png' },
+          { text: '공통 UI 기준 부재\n시안마다 다른 색상과 컴포넌트 기준', image: 'portfolio/almond/img_define_no_standard.png' },
+          { text: '전담 퍼블리셔 부재\n디자인을 구현으로 연결할 방식 필요', image: 'portfolio/almond/img_define_no_publisher.png' },
         ],
       },
     ],
@@ -201,24 +201,24 @@ const ALMOND_CASE_STUDY = {
   system: {
     label: 'APPROACH',
     title: '반복 수정에 유연하게,\n구현으로 이어지는 디자인',
-    image: '/protfolio/almond/item04.png',
+    image: 'portfolio/almond/img_approach_mcp.png',
     heading: '01. 공통 디자인 기준 정립',
     body: '색상·서체·여백을 공통 기준으로 정리하고, 반복 UI를 컴포넌트로 구성해\n수정 사항을 여러 화면에 일관되게 반영할 수 있도록 했습니다.',
-    logo: '/protfolio/almond/logo.svg',
+    logo: 'portfolio/almond/logo_almond.svg',
     colors: ['#2A76F2', '#4C4CEB', '#FB4053', '#14B560', '#774D31', '#222222', '#FFFFFF'],
-    icons: [1, 2, 3, 8, 10].map((i) => `/protfolio/almond/icon${String(i).padStart(2, '0')}.svg`),
+    icons: [1, 2, 3, 8, 10].map((i) => `portfolio/almond/ico_learning_${String(i).padStart(2, '0')}.svg`),
     // sample data only — just there to show the chart style morphing between views
     charts: [
       { title: '주간 학습 시간', total: '12.4h', labels: ['월', '화', '수', '목', '금', '토'], values: [42, 58, 35, 74, 51, 28] },
       { title: '회차별 정답률', total: '86%', labels: ['1회', '2회', '3회', '4회', '5회', '6회'], values: [62, 70, 68, 79, 84, 91] },
       { title: '어휘 복습 횟수', total: '248회', labels: ['3월', '4월', '5월', '6월', '7월', '8월'], values: [30, 46, 64, 52, 38, 57] },
     ],
-    table: '/protfolio/almond/item05.png',
-    buttons: '/protfolio/almond/item06.png',
+    table: 'portfolio/almond/img_system_tokens.png',
+    buttons: 'portfolio/almond/img_system_buttons.png',
     iconography: {
       title: 'Iconography',
       body: '투명한 질감과 선명한 색상을 활용한 학습용 아이콘입니다.\n형태와 색상 표현을 통일해 다양한 학습 화면에서 일관된 분위기를 유지했습니다.',
-      icons: Array.from({ length: 10 }, (_, i) => `/protfolio/almond/icon${String(i + 1).padStart(2, '0')}.svg`),
+      icons: Array.from({ length: 10 }, (_, i) => `portfolio/almond/ico_learning_${String(i + 1).padStart(2, '0')}.svg`),
     },
     infographic: {
       title: 'Infographic',
@@ -234,7 +234,7 @@ const ALMOND_CASE_STUDY = {
     structure: {
       heading: '02. 구현을 고려한 구조화',
       body: '오토레이아웃과 역할별 레이어 네이밍을 적용해,\nMCP를 활용한 구현 초안에 화면의 계층과 배치 의도가 반영되도록 정리했습니다.',
-      image: '/protfolio/almond/item07.png',
+      image: 'portfolio/almond/img_structure_figma.png',
       caption: '*구현 테스트에 사용한 Figma 디자인',
     },
     // layer panel on the left card, generated screen on the right
@@ -242,15 +242,15 @@ const ALMOND_CASE_STUDY = {
       {
         title: 'AS-IS',
         body: '역할을 파악하기 어려운 레이어 이름과 구조로,\nMCP로 생성한 구현 초안이 원본의 배치와 스타일을 충분히 반영하지 못했습니다.',
-        layers: '/protfolio/almond/item08.png',
-        screen: '/protfolio/almond/item09.png',
+        layers: 'portfolio/almond/img_asis_layers.png',
+        screen: 'portfolio/almond/img_asis_screen.png',
         background: '#181B1A',
       },
       {
         title: 'TO-BE',
         body: '요소의 역할과 계층에 맞춰 레이어를 정리하고 공통 디자인 기준을 적용해,\n구현 초안이 원본의 배치와 스타일을 더 충실히 반영하도록 보완했습니다.',
-        layers: '/protfolio/almond/item10.png',
-        screen: '/protfolio/almond/item11.png',
+        layers: 'portfolio/almond/img_tobe_layers.png',
+        screen: 'portfolio/almond/img_tobe_screen.png',
         background: '#0F283A',
       },
     ],
@@ -263,33 +263,33 @@ const ALMOND_CASE_STUDY = {
       {
         label: 'Student',
         body: '집중력 훈련부터 어휘 복습, 문단별 읽기와 문제풀이까지\n학습 순서와 진행 상태를 확인할 수 있도록 구성했습니다.',
-        photo: '/protfolio/almond/item12.png',
+        photo: 'portfolio/almond/img_student_photo.png',
         cards: [
-          { label: '집중력 훈련', image: '/protfolio/almond/item13.png' },
-          { label: '문제풀이', image: '/protfolio/almond/item14.png', align: 'right' },
-          { label: '문단별 읽기', image: '/protfolio/almond/item15.png', wide: true },
+          { label: '집중력 훈련', image: 'portfolio/almond/img_student_focus.png' },
+          { label: '문제풀이', image: 'portfolio/almond/img_student_quiz.png', align: 'right' },
+          { label: '문단별 읽기', image: 'portfolio/almond/img_student_reading.png', wide: true },
         ],
       },
       {
         label: 'HQ Admin',
         body: '지점별 운영 현황과 결제 내역을 확인하고,\n신규 지점 등록과 상세 정보 관리를 이어갈 수 있도록 구성했습니다.',
-        photo: '/protfolio/almond/item16.png',
+        photo: 'portfolio/almond/img_hq_photo.png',
         theme: 'light',
         cards: [
-          { label: '결제 상세 정보', image: '/protfolio/almond/item17.png', tall: true },
-          { label: '결제 내역', image: '/protfolio/almond/item18.png', align: 'right' },
-          { label: '신규 문제 등록', image: '/protfolio/almond/item19.png' },
+          { label: '결제 상세 정보', image: 'portfolio/almond/img_hq_payment_detail.png', tall: true },
+          { label: '결제 내역', image: 'portfolio/almond/img_hq_payment_list.png', align: 'right' },
+          { label: '신규 문제 등록', image: 'portfolio/almond/img_hq_new_question.png' },
         ],
       },
       {
         label: 'Branch Admin',
         body: '학생별 학습 현황을 확인하고,\n이용권 구매와 배정까지 관리할 수 있도록 구성했습니다.',
-        photo: '/protfolio/almond/item20.png',
+        photo: 'portfolio/almond/img_branch_photo.png',
         theme: 'light',
         cards: [
-          { label: '이용권 구매', image: '/protfolio/almond/item21.png', wide: true },
-          { label: '리포트 생성', image: '/protfolio/almond/item22.png', align: 'right' },
-          { label: '학생별 학습 현황', image: '/protfolio/almond/item23.png', align: 'right' },
+          { label: '이용권 구매', image: 'portfolio/almond/img_branch_voucher.png', wide: true },
+          { label: '리포트 생성', image: 'portfolio/almond/img_branch_report.png', align: 'right' },
+          { label: '학생별 학습 현황', image: 'portfolio/almond/img_branch_progress.png', align: 'right' },
         ],
       },
     ],
@@ -298,7 +298,7 @@ const ALMOND_CASE_STUDY = {
 
 const AIWEB_CASE_STUDY = {
   pageBackground: '#F5F7F8',
-  heroImage: '/protfolio/aiweb/visual.png',
+  heroImage: 'portfolio/aiweb/img_visual.png',
   heroBar: {
     title: 'AIWEB',
     subtitle: 'AIWEB Website Redesign',
@@ -317,15 +317,15 @@ const AIWEB_CASE_STUDY = {
     ],
   },
   videoStage: {
-    video: '/protfolio/aiweb/index-visual.mp4',
-    background: '/protfolio/aiweb/mp4-background.png',
+    video: 'portfolio/aiweb/video_index.mp4',
+    background: 'portfolio/aiweb/bg_video.png',
   },
   problem: {
     label: 'Problem',
     title: '쌓아온 경험과 전문성을\n확인하기 어려운 홈페이지',
     body: '기존 홈페이지는 서비스 소개와 수주 소식 중심으로 구성되어, 실제 수행 사례와 조직 정보가 부족했습니다.\n클라이언트는 협업 가능성을, 예비 지원자는 회사와 일하는 방식을 판단할 정보가 충분하지 않았습니다.',
-    background: '/protfolio/aiweb/ploblem-background.png',
-    image: '/protfolio/aiweb/item01.png',
+    background: 'portfolio/aiweb/bg_problem.png',
+    image: 'portfolio/aiweb/img_problem_tablet.png',
   },
   stakeholder: {
     label: 'STAKEHOLDER INTERVIEW',
@@ -350,13 +350,13 @@ const AIWEB_CASE_STUDY = {
         title: 'Applicant',
         lead: '어떤 팀에서, 어떻게 일하게 될까?',
         body: '팀별 역할과 근무 환경, 채용 정보를 통해\n함께 일할 회사를 이해하도록 구성했습니다.',
-        image: '/protfolio/aiweb/item02.png',
+        image: 'portfolio/aiweb/img_audience_applicant.png',
       },
       {
         title: 'Client',
         lead: '우리의 프로젝트를 맡길 수 있는 회사일까?',
         body: '서비스와 수행 사례, 연혁을 통해\n업무 범위와 관련 경험을 확인하도록 구성했습니다.',
-        image: '/protfolio/aiweb/item03.png',
+        image: 'portfolio/aiweb/img_audience_client.png',
       },
     ],
   },
@@ -394,8 +394,8 @@ const AIWEB_CASE_STUDY = {
     concept: {
       label: 'UX/UI CONCEPT',
       title: 'EXPERTISE\nMADE\nVISIBLE',
-      image: '/protfolio/aiweb/item04.png',
-      phones: '/protfolio/aiweb/item05.png',
+      image: 'portfolio/aiweb/img_concept_monitor.png',
+      phones: 'portfolio/aiweb/img_concept_phones.png',
     },
     diagram: {
       from: 'CLIENT &\nAPPLICANT',
@@ -412,40 +412,40 @@ const AIWEB_CASE_STUDY = {
       body: '브랜드 비주얼로 첫인상을 전달하고, 서비스와 주요 업력을 함께 배치해\n에이아이웹이 하는 일과 쌓아온 경험을 살펴볼 수 있도록 구성했습니다.',
       layout: 'uiFeature',
       cards: [
-        { label: 'Brand Intro', image: '/protfolio/aiweb/item06.png' },
-        { label: 'Service Card', image: '/protfolio/aiweb/item07.png' },
-        { label: 'Experience Card', image: '/protfolio/aiweb/item08.png' },
+        { label: 'Brand Intro', image: 'portfolio/aiweb/img_main_brand_intro.png' },
+        { label: 'Service Card', image: 'portfolio/aiweb/img_main_service_card.png' },
+        { label: 'Experience Card', image: 'portfolio/aiweb/img_main_experience_card.png' },
       ],
-      carousel: [1, 2, 3, 4, 5, 6, 7].map((i) => `/protfolio/aiweb/sell0${i}.png`),
+      carousel: [1, 2, 3, 4, 5, 6, 7].map((i) => `portfolio/aiweb/img_service_0${i}.png`),
     },
     {
       label: 'WORKS',
       title: '분야별 탐색부터\n실제 수행 결과물까지',
       body: '프로젝트를 분야별로 분류해 관심 있는 사례를 찾고, 상세 화면에서\n수행 업무와 결과물을 확인해 협업 가능성을 판단할 수 있도록 구성했습니다.',
-      image: '/protfolio/aiweb/item9.png',
+      image: 'portfolio/aiweb/img_works_monitor.png',
       layout: 'uiFeatureReverse',
       cards: [
-        { label: 'Project Card', image: '/protfolio/aiweb/item10.png' },
-        { label: 'Project Detail', image: '/protfolio/aiweb/item11.png' },
-        { label: 'Category Filter', image: '/protfolio/aiweb/item12.png' },
+        { label: 'Project Card', image: 'portfolio/aiweb/img_works_project_card.png' },
+        { label: 'Project Detail', image: 'portfolio/aiweb/img_works_project_detail.png' },
+        { label: 'Category Filter', image: 'portfolio/aiweb/img_works_category_filter.png' },
       ],
     },
     {
       label: 'CAREER',
       title: '함께 일할 팀을 이해하고\n지원으로 이어지도록',
       body: '팀별 역할과 채용 정보를 정리해 예비 지원자가 회사를 이해하고,\n지원 버튼을 통해 지원 단계로 이동할 수 있도록 구성했습니다.',
-      image: '/protfolio/aiweb/item13.png',
+      image: 'portfolio/aiweb/img_career_phone.png',
       layout: 'uiPair',
       cards: [
-        { label: 'Team Overview', image: '/protfolio/aiweb/item14.png' },
-        { label: 'Apply CTA', image: '/protfolio/aiweb/item15.png' },
+        { label: 'Team Overview', image: 'portfolio/aiweb/img_career_team_overview.png' },
+        { label: 'Apply CTA', image: 'portfolio/aiweb/img_career_apply_cta.png' },
       ],
     },
   ],
 }
 
 const SLEEFIT_CASE_STUDY = {
-  heroImage: '/protfolio/gym/visual.png',
+  heroImage: 'portfolio/sleefit/img_visual.png',
   heroBar: {
     title: 'SleeFit',
     subtitle: 'SleeFit Workout Tracking App',
@@ -506,7 +506,7 @@ const SLEEFIT_CASE_STUDY = {
   },
   insight: {
     title: 'Insight.',
-    image: '/protfolio/gym/item02.png',
+    image: 'portfolio/sleefit/img_insight.png',
     items: [
       {
         title: '운동 순서가 바뀌면 다음 종목을 찾기 번거롭다',
@@ -526,17 +526,17 @@ const SLEEFIT_CASE_STUDY = {
     title: 'Define.',
     items: [
       {
-        video: '/protfolio/gym/problem-mp4.mp4',
+        video: 'portfolio/sleefit/video_problem.mp4',
         title: '01. 운동 변경 시 길어지는 탐색',
         body: '혼잡한 환경에서는 예정된 운동을 다른 종목으로 바꿔야 합니다.\n필요한 종목을 빠르게 찾기 어려워, 탐색이 운동 사이의 휴식 시간을 차지합니다.',
       },
       {
-        images: ['/protfolio/gym/item03.png', '/protfolio/gym/item04.png'],
+        images: ['portfolio/sleefit/img_problem_01.png', 'portfolio/sleefit/img_problem_02.png'],
         title: '02. 기록 외 요소가 함께 차지하는 화면',
         body: '운동 기록을 주로 사용하는 참여자들에게 광고와 부가 기능의 우선순위는 낮았습니다.\n기록에 필요한 정보와 조작에 집중할 수 있도록 화면 구성을 정리할 필요가 있습니다.',
       },
       {
-        images: ['/protfolio/gym/item05.png', '/protfolio/gym/item06.png'],
+        images: ['portfolio/sleefit/img_problem_03.png', 'portfolio/sleefit/img_problem_04.png'],
         title: '03. 누적 횟수를 다시 시작하는 부담',
         body: '쌓아온 운동 횟수를 새 앱에서도 이어가고 싶지만, 처음부터 시작해야 한다는 부담이 있습니다.\n앱을 바꾸더라도 누적 횟수를 반영할 수 있는 방법이 필요합니다.',
       },
@@ -545,13 +545,13 @@ const SLEEFIT_CASE_STUDY = {
   solution: {
     title: 'Solution.',
     items: [
-      { image: '/protfolio/gym/item07.png', painPoint: 'Pain Point', label: 'Fleek' },
-      { image: '/protfolio/gym/item08.png', painPoint: 'Pain Point', label: 'Gymwork' },
+      { image: 'portfolio/sleefit/img_solution_fleek.png', painPoint: 'Pain Point', label: 'Fleek' },
+      { image: 'portfolio/sleefit/img_solution_gymwork.png', painPoint: 'Pain Point', label: 'Gymwork' },
     ],
     detail: {
-      background: '/protfolio/gym/bg01.png',
-      left: '/protfolio/gym/item09.png',
-      right: '/protfolio/gym/item10.png',
+      background: 'portfolio/sleefit/bg_solution_detail.png',
+      left: 'portfolio/sleefit/img_solution_detail_left.png',
+      right: 'portfolio/sleefit/img_solution_detail_right.png',
       heading: '다음 운동을 쉽게 찾는 분류 구조',
       body: '운동을 부위와 장비 기준으로 분류하고, 목록에서 여러 종목을 함께 살펴볼 수 있도록 구성했습니다.\n운동 순서가 바뀌어도 필요한 종목을 찾아 기록을 이어갈 수 있도록 설계했습니다.',
     },
@@ -559,8 +559,8 @@ const SLEEFIT_CASE_STUDY = {
   removedFeatures: {
     heading: '운동 기록에 집중한 화면 구성',
     body: '사용 빈도가 낮았던 커뮤니티와 유료 부가 기능을 제외하고, 광고 없이 기록할 수 있도록 구성했습니다.\n세트 입력과 휴식 타이머, 운동 이력 등 기록을 이어가는 데 필요한 기능을 중심으로 정리했습니다.',
-    phone1: '/protfolio/gym/phone01.png',
-    phone2: '/protfolio/gym/phone02.png',
+    phone1: 'portfolio/sleefit/img_removed_phone_01.png',
+    phone2: 'portfolio/sleefit/img_removed_phone_02.png',
     chips: [
       { letter: 'R', color: '#22c55e', label: '랭킹 시스템', top: '35%', left: '0%', scale: 1, faded: true, behind: true, blur: 1 },
       { letter: 'P', color: '#a855f7', label: '각종 유료 기능', top: '26%', left: '84%', scale: 1.2, faded: true, behind: true, blur: 1 },
@@ -569,20 +569,20 @@ const SLEEFIT_CASE_STUDY = {
       { letter: 'R', color: '#f97316', label: '루틴 추천', top: '68%', left: '74%', scale: 1.5 },
     ],
     gallery: {
-      video: '/protfolio/gym/solution.mp4',
+      video: 'portfolio/sleefit/video_solution.mp4',
       items: [
-        { image: '/protfolio/gym/item11.png' },
-        { image: '/protfolio/gym/item12.png' },
-        { image: '/protfolio/gym/item13.png', caption: '휴식 알림 외에 알림 X' },
-        { image: '/protfolio/gym/item14.png' },
+        { image: 'portfolio/sleefit/img_gallery_01.png' },
+        { image: 'portfolio/sleefit/img_gallery_02.png' },
+        { image: 'portfolio/sleefit/img_gallery_03.png', caption: '휴식 알림 외에 알림 X' },
+        { image: 'portfolio/sleefit/img_gallery_04.png' },
       ],
     },
   },
   workoutCount: {
     heading: '이전 누적 운동 횟수 이어가기',
     body: '새 앱에서 운동 횟수를 0부터 시작하는 부담을 줄이기 위해, 기존 누적 횟수를 직접 입력할 수 있도록 구성했습니다.\n온보딩에서 입력하고 설정에서 수정하며, 슬리핏에서 완료한 운동 횟수를 이어서 쌓을 수 있습니다.',
-    phone1: '/protfolio/gym/phone03.png',
-    phone2: '/protfolio/gym/phone04.png',
+    phone1: 'portfolio/sleefit/img_workout_count_phone_01.png',
+    phone2: 'portfolio/sleefit/img_workout_count_phone_02.png',
   },
   retrospective: {
     title: 'Review & Iteration.',
@@ -608,42 +608,42 @@ export const PROJECTS = [
     id: 'sleefit',
     title: 'SleeFit - 운동일지 앱',
     tags: ['UX/UI', 'Build'],
-    image: '/protfolio/gym.png',
+    image: 'portfolio/thumb_sleefit.png',
     caseStudy: SLEEFIT_CASE_STUDY,
   },
   {
     id: 'almond',
     title: '책나무 아몬드 학습 서비스',
     tags: ['UI Design', 'Design System', 'Handoff'],
-    image: '/protfolio/almond.png',
+    image: 'portfolio/thumb_almond.png',
     caseStudy: ALMOND_CASE_STUDY,
   },
   {
     id: 'aiweb',
     title: 'AIWEB 웹리뉴얼',
     tags: ['UX/UI', 'Publishing'],
-    image: '/protfolio/aiweb.png',
+    image: 'portfolio/thumb_aiweb.png',
     caseStudy: AIWEB_CASE_STUDY,
   },
   {
     id: 'kicc',
     title: '한국정보통신 투어버스',
     tags: ['UI Design', 'Publishing'],
-    image: '/protfolio/kicc.png',
+    image: 'portfolio/thumb_kicc.png',
     caseStudy: KICC_CASE_STUDY,
   },
   {
     id: 'forcans',
     title: '포켄스 메가위크 프로모션',
     tags: ['Promotion', 'Banner', 'Event Page'],
-    image: '/protfolio/forcans.png',
+    image: 'portfolio/thumb_forcans.png',
     caseStudy: FORCANS_CASE_STUDY,
   },
   {
     id: 'kookmin',
     title: 'KB 블랙프라이데이',
     tags: ['Promotion', 'Banner', 'Detail Page'],
-    image: '/protfolio/kookmin.png',
+    image: 'portfolio/thumb_kookmin.png',
     darkText: true, // white thumbnail background
     caseStudy: KOOKMIN_CASE_STUDY,
   },

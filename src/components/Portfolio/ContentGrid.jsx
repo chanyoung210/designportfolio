@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './ContentGrid.module.css'
 
-// Real w/h per file (public/protfolio/content) — the single source of
+// Real w/h per file (public/portfolio/content) — the single source of
 // truth for both the row-height math below and each item's aspect-ratio,
 // so images are never cropped/stretched off their saved proportions.
 const IMAGES = {
@@ -97,7 +97,7 @@ export function ContentGrid() {
           <div key={ids.join('')} className={styles.row} style={{ height: rowHeight(ids) }}>
             {ids.map((id) => (
               <div key={id} className={styles.item} style={{ aspectRatio: `${IMAGES[id].w} / ${IMAGES[id].h}` }}>
-                <img src={`/protfolio/content/${id}.png`} alt="" />
+                <img src={`portfolio/content/img_content_${id}.png`} alt="" />
               </div>
             ))}
           </div>

@@ -46,7 +46,7 @@ export function Nav() {
     playerRef.current?.setVolume?.(v)
   }
 
-  const iconUrl = muted ? '/volume-off.svg' : '/volume-on.svg'
+  const iconUrl = muted ? 'common/ico_volume_off.svg' : 'common/ico_volume_on.svg'
 
   // FocusList scroll-jacks the region right before Portfolio, so letting
   // the browser's own anchor-jump/smooth-scroll run there races its timing
@@ -65,8 +65,8 @@ export function Nav() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${dimmed ? styles.dimmed : ''}`}>
       <div id={MUSIC_PLAYER_ID} className={styles.hiddenPlayer} />
       <a href="#hero" className={styles.icons} aria-label="Hero 섹션으로 이동" onClick={handleNavClick('hero')}>
-        <img src="/hero/star.svg" alt="" className={styles.starRotated} width="20" height="20" />
-        <img src="/hero/star.svg" alt="" width="20" height="20" />
+        <img src="common/ico_star.svg" alt="" className={styles.starRotated} width="20" height="20" />
+        <img src="common/ico_star.svg" alt="" width="20" height="20" />
       </a>
       <ul className={styles.links}>
         {LINKS.map((label) => (
