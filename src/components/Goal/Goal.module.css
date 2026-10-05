@@ -66,9 +66,9 @@
      only when the 200px-padded section (minus the 44px indent) runs short */
   font-size: min(18px, calc((100vw - 244px) / 58.5));
   line-height: 1.6;
-  color: #6b6b6b;
+  color: #8a8a8a; /* quote reads first */
 }
 
 .testimonials span {
-  color: #8a8a8a;
+  color: #6b6b6b; /* author tag sits back */
 }
