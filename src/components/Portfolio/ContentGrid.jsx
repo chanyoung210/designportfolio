@@ -21,7 +21,7 @@ const IMAGES = {
 
 // Row groups match the reference layout: 2 items, 3, 2, 3.
 const ROW_GROUPS = [
-  ['01', '02'],
+  // ['01', '02'], // TEMP hidden (smiley character shots) — uncomment to bring back
   ['03', '04', '05'],
   ['06', '07'],
   ['08', '09', '10'],
